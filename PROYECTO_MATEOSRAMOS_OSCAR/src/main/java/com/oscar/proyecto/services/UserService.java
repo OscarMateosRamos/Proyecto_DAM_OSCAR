@@ -1,12 +1,12 @@
-package com.luisdbb.tarea3AD2024base.services;
+package com.oscar.proyecto.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.luisdbb.tarea3AD2024base.modelo.User;
-import com.luisdbb.tarea3AD2024base.repositorios.UserRepository;
+import com.oscar.proyecto.modelo.User;
+import com.oscar.proyecto.repositorios.UserRepository;
 
 @Service
 public class UserService {

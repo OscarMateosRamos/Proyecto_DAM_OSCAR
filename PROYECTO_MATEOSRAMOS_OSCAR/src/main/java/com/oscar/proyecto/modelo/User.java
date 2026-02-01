@@ -1,4 +1,4 @@
-package com.luisdbb.tarea3AD2024base.modelo;
+package com.oscar.proyecto.modelo;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.luisdbb.tarea3AD2024base.config;
+package com.oscar.proyecto.config;
 
 import java.io.IOException;
 import java.util.ResourceBundle;

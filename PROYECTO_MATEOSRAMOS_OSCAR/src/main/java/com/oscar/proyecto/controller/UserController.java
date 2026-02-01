@@ -1,4 +1,4 @@
-package com.luisdbb.tarea3AD2024base.controller;
+package com.oscar.proyecto.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
-import com.luisdbb.tarea3AD2024base.config.StageManager;
-import com.luisdbb.tarea3AD2024base.modelo.User;
-import com.luisdbb.tarea3AD2024base.services.UserService;
-import com.luisdbb.tarea3AD2024base.view.FxmlView;
+import com.oscar.proyecto.config.StageManager;
+import com.oscar.proyecto.modelo.User;
+import com.oscar.proyecto.services.UserService;
+import com.oscar.proyecto.view.FxmlView;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

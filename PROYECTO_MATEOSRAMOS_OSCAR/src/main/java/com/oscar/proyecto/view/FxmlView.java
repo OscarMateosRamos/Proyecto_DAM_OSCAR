@@ -1,4 +1,4 @@
-package com.luisdbb.tarea3AD2024base.view;
+package com.oscar.proyecto.view;
 
 import java.util.ResourceBundle;
 

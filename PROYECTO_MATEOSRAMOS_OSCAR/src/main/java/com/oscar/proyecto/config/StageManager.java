@@ -1,4 +1,4 @@
-package com.luisdbb.tarea3AD2024base.config;
+package com.oscar.proyecto.config;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import org.slf4j.Logger;
 
-import com.luisdbb.tarea3AD2024base.view.FxmlView;
+import com.oscar.proyecto.view.FxmlView;
 
 import javafx.application.Platform;
 import javafx.scene.Parent;

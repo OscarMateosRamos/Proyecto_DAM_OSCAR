@@ -1,0 +1,112 @@
+
+.vbox {
+    -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+    -fx-background-radius: 10;
+    -fx-border-color: #4682b4;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+    -fx-padding: 20;
+}
+
+
+.titulo {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1);
+}
+
+
+.label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+
+.text-field, .password-field {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+    -fx-border-color: #4682b4;
+    -fx-border-radius: 5;
+    -fx-border-width: 1.5;
+    -fx-padding: 5 10 5 10;
+}
+
+
+.boton-principal {
+    -fx-background-color: linear-gradient(to bottom, #4682b4, #5f9ea0);
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 8 16;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
+}
+
+.boton-principal:hover {
+    -fx-background-color: linear-gradient(to bottom, #5f9ea0, #4682b4);
+    -fx-cursor: hand;
+}
+
+
+.boton-secundario {
+    -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+    -fx-text-fill: #4682b4;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 8 16;
+    -fx-border-color: #4682b4;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 2);
+}
+
+.boton-secundario:hover {
+    -fx-background-color: linear-gradient(to bottom, #e6f2ff, #f0f8ff);
+    -fx-cursor: hand;
+}
+
+/* Estilo del botón de ayuda */
+.boton-ayuda {
+    -fx-background-color: #f0f8ff;
+    -fx-text-fill: #4682b4;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 8 4 8;
+    -fx-border-color: #4682b4;
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+.boton-ayuda:hover {
+    -fx-background-color: #e6f2ff;
+    -fx-cursor: hand;
+}
+
+
+.mensaje-error {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #d9534f;
+    -fx-font-weight: bold;
+}
+
+
+.check-box {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}

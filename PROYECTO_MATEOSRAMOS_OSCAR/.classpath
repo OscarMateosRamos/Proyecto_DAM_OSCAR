@@ -55,6 +55,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFx"/>
-	<classpathentry kind="src" path="/tarea3AD2024base"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

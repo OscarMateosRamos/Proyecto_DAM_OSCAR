@@ -1,41 +1,60 @@
+/**
+*Clase Curso.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Cursos")
-
+@Table(name = "cursos")
 public class Curso {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_curso")
 	private Long idCurso;
 
 	@ManyToOne
 	@JoinColumn(name = "id_ciclo")
 	private Ciclo ciclo;
 
-	@Column(name = "nombre")
 	private String nombre;
-
-	@Column(name = "codigo")
 	private String codigo;
+	private String añoAcademico;
 
-	@Column(name = "año_academico")
-	private String anoAcademico;
+	@OneToMany(mappedBy = "curso")
+	private List<Grupo> grupos;
+
+	@ManyToMany(mappedBy = "cursosAsignados")
+	private List<Profesor> profesores;
 
 	public Curso() {
 		super();
 	}
 
 	public Curso(Long idCurso, Ciclo ciclo, String nombre, String codigo,
-			String anoAcademico) {
+			String añoAcademico, List<Grupo> grupos,
+			List<Profesor> profesores) {
 		super();
 		this.idCurso = idCurso;
 		this.ciclo = ciclo;
 		this.nombre = nombre;
 		this.codigo = codigo;
-		this.anoAcademico = anoAcademico;
+		this.añoAcademico = añoAcademico;
+		this.grupos = grupos;
+		this.profesores = profesores;
 	}
 
 	public Long getIdCurso() {
@@ -70,19 +89,36 @@ public class Curso {
 		this.codigo = codigo;
 	}
 
-	public String getAnoAcademico() {
-		return anoAcademico;
+	public String getAñoAcademico() {
+		return añoAcademico;
 	}
 
-	public void setAnoAcademico(String anoAcademico) {
-		this.anoAcademico = anoAcademico;
+	public void setAñoAcademico(String añoAcademico) {
+		this.añoAcademico = añoAcademico;
+	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	public List<Profesor> getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(List<Profesor> profesores) {
+		this.profesores = profesores;
 	}
 
 	@Override
 	public String toString() {
 		return "Curso [idCurso=" + idCurso + ", ciclo=" + ciclo + ", nombre="
-				+ nombre + ", codigo=" + codigo + ", anoAcademico="
-				+ anoAcademico + "]";
+				+ nombre + ", codigo=" + codigo + ", añoAcademico="
+				+ añoAcademico + ", grupos=" + grupos + ", profesores="
+				+ profesores + "]";
 	}
 
 }

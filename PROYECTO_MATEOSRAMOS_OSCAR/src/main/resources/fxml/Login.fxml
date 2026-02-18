@@ -7,25 +7,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox   fx:id="rootPane" alignment="CENTER" spacing="15"
+<VBox fx:id="rootPane" alignment="CENTER" spacing="15"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.oscarmateos.Tarea3_DAM.Controller.ControladorLogin">
+      fx:controller="com.oscar.proyecto.controller.ControladorLogin">
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    
     <HBox alignment="TOP_RIGHT" prefWidth="400">
         <Button text="?" onAction="#mostrarAyuda" styleClass="boton-ayuda"/>
     </HBox>
 
     <Label text="Iniciar Sesión" styleClass="titulo"/>
 
-    <ImageView fitHeight="150" fitWidth="200" preserveRatio="true">
+    <ImageView fx:id="Logo" fitHeight="150" fitWidth="200" preserveRatio="true">
         <image>
-            <Image url="@/img/circo.png"/>
+            <Image url="@/images/LogoColegio.png"/>
         </image>
     </ImageView>
 
@@ -36,10 +35,27 @@
 
     <VBox spacing="10" alignment="CENTER_LEFT">
         <Label text="Contraseña:" styleClass="label"/>
-        <PasswordField fx:id="passwordField" promptText="Introduce tu contraseña"/>
-    </VBox>
 
-    <CheckBox fx:id="showPasswordCheck" text="Mostrar contraseña"/>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+
+           
+            <PasswordField fx:id="passwordField" promptText="Introduce tu contraseña"/>
+
+           
+            <TextField fx:id="passwordVisibleField" promptText="Introduce tu contraseña"
+                       visible="false" managed="false"/>
+
+          
+            <ImageView fx:id="togglePasswordIcon"
+                       fitHeight="24" fitWidth="24"
+                       onMouseClicked="#togglePasswordVisibility">
+                <image>
+                    <Image url="@/icons/OjoAbierto.png"/>
+                </image>
+            </ImageView>
+
+        </HBox>
+    </VBox>
 
     <HBox spacing="15" alignment="CENTER">
         <Button fx:id="iniciarSesionButton" text="Iniciar Sesión" styleClass="boton-principal" onAction="#handleIniciarSesion"/>

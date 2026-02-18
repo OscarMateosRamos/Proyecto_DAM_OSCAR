@@ -1,8 +1,11 @@
+/**
+*Clase Incidencia.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import java.sql.Date;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +15,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Incidencias")
-
+@Table(name = "incidencias")
 public class Incidencia {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_incidencia")
 	private Long idIncidencia;
 
 	@ManyToOne
@@ -28,18 +30,15 @@ public class Incidencia {
 	@JoinColumn(name = "id_estudiante")
 	private Estudiante estudiante;
 
-	@Column(name = "descripcion")
 	private String descripcion;
-
-	@Column(name = "fecha")
-	private Date fecha;
+	private String fecha;
 
 	public Incidencia() {
 		super();
 	}
 
 	public Incidencia(Long idIncidencia, FormacionEmpresa formacion,
-			Estudiante estudiante, String descripcion, Date fecha) {
+			Estudiante estudiante, String descripcion, String fecha) {
 		super();
 		this.idIncidencia = idIncidencia;
 		this.formacion = formacion;
@@ -80,11 +79,11 @@ public class Incidencia {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

@@ -1,31 +1,45 @@
+/**
+*Clase Ciclo.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Ciclos")
-
+@Table(name = "ciclos")
 public class Ciclo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ciclo")
 	private Long idCiclo;
 
-	@Column(name = "nombre")
 	private String nombre;
-
-	@Column(name = "descripcion")
 	private String descripcion;
+
+	@OneToMany(mappedBy = "ciclo")
+	private List<Curso> cursos;
 
 	public Ciclo() {
 		super();
 	}
 
-	public Ciclo(Long idCiclo, String nombre, String descripcion) {
+	public Ciclo(Long idCiclo, String nombre, String descripcion,
+			List<Curso> cursos) {
 		super();
 		this.idCiclo = idCiclo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.cursos = cursos;
 	}
 
 	public Long getIdCiclo() {
@@ -52,10 +66,18 @@ public class Ciclo {
 		this.descripcion = descripcion;
 	}
 
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
 	@Override
 	public String toString() {
 		return "Ciclo [idCiclo=" + idCiclo + ", nombre=" + nombre
-				+ ", descripcion=" + descripcion + "]";
+				+ ", descripcion=" + descripcion + ", cursos=" + cursos + "]";
 	}
 
 }

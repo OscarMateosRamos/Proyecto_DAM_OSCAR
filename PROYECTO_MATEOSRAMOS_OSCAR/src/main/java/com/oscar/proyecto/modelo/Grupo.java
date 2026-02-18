@@ -1,31 +1,50 @@
+/**
+*Clase Grupo.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Grupos")
+@Table(name = "grupos")
 public class Grupo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_grupo")
 	private Long idGrupo;
 
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
 	private Curso curso;
 
-	@Column(name = "nombre")
 	private String nombre;
+
+	@OneToMany(mappedBy = "grupo")
+	private List<Estudiante> estudiantes;
 
 	public Grupo() {
 		super();
 	}
 
-	public Grupo(Long idGrupo, Curso curso, String nombre) {
+	public Grupo(Long idGrupo, Curso curso, String nombre,
+			List<Estudiante> estudiantes) {
 		super();
 		this.idGrupo = idGrupo;
 		this.curso = curso;
 		this.nombre = nombre;
+		this.estudiantes = estudiantes;
 	}
 
 	public Long getIdGrupo() {
@@ -52,10 +71,18 @@ public class Grupo {
 		this.nombre = nombre;
 	}
 
+	public List<Estudiante> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public void setEstudiantes(List<Estudiante> estudiantes) {
+		this.estudiantes = estudiantes;
+	}
+
 	@Override
 	public String toString() {
 		return "Grupo [idGrupo=" + idGrupo + ", curso=" + curso + ", nombre="
-				+ nombre + "]";
+				+ nombre + ", estudiantes=" + estudiantes + "]";
 	}
 
 }

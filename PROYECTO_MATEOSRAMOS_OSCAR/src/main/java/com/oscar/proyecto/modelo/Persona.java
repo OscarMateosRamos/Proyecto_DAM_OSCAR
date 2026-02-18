@@ -1,29 +1,36 @@
+/**
+*Clase Persona.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Personas")
+@Table(name = "personas")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Persona {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_persona")
 	private Long idPersona;
 
-	@Column(name = "nombre")
 	private String nombre;
-
-	@Column(name = "apellidos")
 	private String apellidos;
-
-	@Column(name = "usuario")
 	private String usuario;
-
-	@Column(name = "contraseña")
-	private String contrasena;
+	private String contraseña;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "perfil")
 	private Perfil perfil;
 
 	public Persona() {
@@ -31,13 +38,13 @@ public class Persona {
 	}
 
 	public Persona(Long idPersona, String nombre, String apellidos,
-			String usuario, String contrasena, Perfil perfil) {
+			String usuario, String contraseña, Perfil perfil) {
 		super();
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.usuario = usuario;
-		this.contrasena = contrasena;
+		this.contraseña = contraseña;
 		this.perfil = perfil;
 	}
 
@@ -73,12 +80,12 @@ public class Persona {
 		this.usuario = usuario;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public Perfil getPerfil() {
@@ -93,7 +100,7 @@ public class Persona {
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nombre=" + nombre
 				+ ", apellidos=" + apellidos + ", usuario=" + usuario
-				+ ", contrasena=" + contrasena + ", perfil=" + perfil + "]";
+				+ ", contraseña=" + contraseña + ", perfil=" + perfil + "]";
 	}
 
 }

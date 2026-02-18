@@ -1,12 +1,11 @@
 /**
-*Clase Perfil.java
+*Clase Justificada.java
 *
 *@author Oscar Mateos Ramos
 *@version
 */
 package com.oscar.proyecto.modelo;
 
-public enum Perfil {
-	ADMIN, PROFESOR, TUTOR, ESTUDIANTE
-
+public enum Justificada {
+	SI,NO
 }

@@ -21,7 +21,7 @@
            wrapText="true"
            textAlignment="CENTER"/>
 
-    <ImageView fx:id="imgCirco" fitHeight="200" fitWidth="300" preserveRatio="true"/>
+    <ImageView fx:id="Logo" fitHeight="200" fitWidth="300" preserveRatio="true"/>
 
     <Button fx:id="iniciarSesionButton"
             text="Iniciar Sesión"

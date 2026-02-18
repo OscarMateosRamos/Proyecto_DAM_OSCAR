@@ -1,5 +1,6 @@
 com\oscar\proyecto\repositorios\IncidenciaRepository.class
 com\oscar\proyecto\modelo\TutorEmpresa.class
+com\oscar\proyecto\modelo\Justificada.class
 com\oscar\proyecto\repositorios\TutorEmpresaRepository.class
 com\oscar\proyecto\services\ServicioGrupo.class
 com\oscar\proyecto\modelo\Ciclo.class

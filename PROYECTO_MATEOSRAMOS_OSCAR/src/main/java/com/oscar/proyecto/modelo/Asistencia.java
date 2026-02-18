@@ -1,9 +1,14 @@
+/**
+*Clase Asistencia.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import java.sql.Date;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,35 +16,32 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name = "Asistencia")
-
+@Table(name = "asistencia")
 public class Asistencia {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_asistencia")
-    private Long idAsistencia;
 
-    @ManyToOne
-    @JoinColumn(name = "id_formacion")
-    private FormacionEmpresa formacion;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idAsistencia;
 
-    @Column(name = "fecha")
-    private Date fecha;
+	@ManyToOne
+	@JoinColumn(name = "id_formacion")
+	private FormacionEmpresa formacion;
 
-    @Column(name = "tipo")
-    private String tipo;
+	private String fecha;
 
-    @Column(name = "justificada")
-    private Boolean justificada;
+	@Enumerated(EnumType.STRING)
+	private TipoAsistencia tipo;
+
+	@Enumerated(EnumType.STRING)
+	private Justificada justificada;
 
 	public Asistencia() {
 		super();
 	}
 
-	public Asistencia(Long idAsistencia, FormacionEmpresa formacion, Date fecha,
-			String tipo, Boolean justificada) {
+	public Asistencia(Long idAsistencia, FormacionEmpresa formacion,
+			String fecha, TipoAsistencia tipo, Justificada justificada) {
 		super();
 		this.idAsistencia = idAsistencia;
 		this.formacion = formacion;
@@ -64,27 +66,27 @@ public class Asistencia {
 		this.formacion = formacion;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-	public String getTipo() {
+	public TipoAsistencia getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoAsistencia tipo) {
 		this.tipo = tipo;
 	}
 
-	public Boolean getJustificada() {
+	public Justificada getJustificada() {
 		return justificada;
 	}
 
-	public void setJustificada(Boolean justificada) {
+	public void setJustificada(Justificada justificada) {
 		this.justificada = justificada;
 	}
 
@@ -94,7 +96,5 @@ public class Asistencia {
 				+ formacion + ", fecha=" + fecha + ", tipo=" + tipo
 				+ ", justificada=" + justificada + "]";
 	}
-    
-    
-    
+
 }

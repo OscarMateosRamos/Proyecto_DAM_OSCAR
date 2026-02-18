@@ -1,12 +1,11 @@
 /**
-*Clase Perfil.java
+*Clase Periodo.java
 *
 *@author Oscar Mateos Ramos
 *@version
 */
 package com.oscar.proyecto.modelo;
 
-public enum Perfil {
-	ADMIN, PROFESOR, TUTOR, ESTUDIANTE
-
+public enum Periodo {
+ ORDINARIO,EXTRAORDINARIO
 }

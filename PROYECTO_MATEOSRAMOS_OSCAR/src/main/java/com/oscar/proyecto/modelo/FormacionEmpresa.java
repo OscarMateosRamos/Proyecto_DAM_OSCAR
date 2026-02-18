@@ -1,23 +1,31 @@
+/**
+*Clase FormacionEmpresa.java
+*
+*@author Oscar Mateos Ramos
+*@version
+*/
 package com.oscar.proyecto.modelo;
 
-import java.sql.Date;
+import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name = "FormacionEmpresa")
+@Table(name = "formacion_empresa")
 public class FormacionEmpresa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_formacion")
     private Long idFormacion;
 
     @ManyToOne
@@ -36,12 +44,22 @@ public class FormacionEmpresa {
     @JoinColumn(name = "id_profesor")
     private Profesor profesor;
 
-    @Column(name = "fecha_inicio")
-    private Date fechaInicio;
+    private String fechaInicio;
+    private String fechaFin;
 
-    @Column(name = "fecha_fin")
-    private Date fechaFin;
+    @Enumerated(EnumType.STRING)
+    private Periodo periodo; 
 
-    @Column(name = "periodo")
-    private String periodo;
+    @OneToMany(mappedBy = "formacion")
+    private List<Asistencia> asistencias;
+
+    @OneToMany(mappedBy = "formacion")
+    private List<Documento> documentos;
+
+    @OneToMany(mappedBy = "formacion")
+    private List<Incidencia> incidencias;
+
+    @OneToOne(mappedBy = "formacion")
+    private Evaluacion evaluacion;
 }
+

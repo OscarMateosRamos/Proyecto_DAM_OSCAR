@@ -24,27 +24,27 @@ public class ControladorBienvenida implements Initializable {
     private StageManager stageManager;
 
     @FXML
-    private ImageView imgCirco;
+    private ImageView Logo;
 
     @FXML
     private Button iniciarSesionButton;
 
     @FXML
-    private VBox rootPane; // Asegúrate de que el VBox en el FXML tenga fx:id="rootPane"
+    private VBox rootPane; 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Cargar la imagen
+       
         cargarImagen();
 
-        // Cargar los estilos CSS
+       
         cargarEstilos();
     }
 
     private void cargarImagen() {
         try (InputStream inputStream = getClass().getResourceAsStream("/images/LogoColegio.png")) {
             if (inputStream != null) {
-                imgCirco.setImage(new Image(inputStream));
+                Logo.setImage(new Image(inputStream));
             } else {
                 System.err.println("Imagen NO encontrada en: /img/circo.png");
             }

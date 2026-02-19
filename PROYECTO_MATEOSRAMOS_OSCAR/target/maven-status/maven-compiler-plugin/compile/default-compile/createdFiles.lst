@@ -1,3 +1,4 @@
+com\oscar\proyecto\controller\ControladorLogin$1.class
 com\oscar\proyecto\repositorios\IncidenciaRepository.class
 com\oscar\proyecto\modelo\TutorEmpresa.class
 com\oscar\proyecto\modelo\Justificada.class
@@ -31,6 +32,7 @@ com\oscar\proyecto\modelo\Evaluacion.class
 com\oscar\proyecto\repositorios\CicloRepository.class
 com\oscar\proyecto\services\ServicioEstudiante.class
 com\oscar\proyecto\services\ServicioPersona.class
+com\oscar\proyecto\services\ServicioSesion.class
 com\oscar\proyecto\modelo\Estudiante.class
 com\oscar\proyecto\modelo\FormacionEmpresa.class
 com\oscar\proyecto\repositorios\EstudianteRepository.class
@@ -43,4 +45,5 @@ com\oscar\proyecto\services\ServicioIncidencia.class
 com\oscar\proyecto\services\ServicioCiclo.class
 com\oscar\proyecto\modelo\Perfil.class
 com\oscar\proyecto\repositorios\EmpresaRepository.class
+com\oscar\proyecto\controller\ControladorMenuAdmin.class
 com\oscar\proyecto\services\ServicioDocumento.class

@@ -2,7 +2,8 @@ package com.oscar.proyecto.config;
 
 public enum FxmlView {
     BIENVENIDA("/fxml/Bienvenida.fxml", "Bienvenida", "/styles/Bienvenida.css"),
-    LOGIN("/fxml/Login.fxml", "Inicio de Sesion", "/styles/Login.css");
+    LOGIN("/fxml/Login.fxml", "Inicio de Sesion", "/styles/Login.css"),
+	MENUADMIN("/fxml/MenuAdmin.fxml", "Menu Admin", "/styles/MenuAdmin.css");
 
     private final String fxmlFile;
     private final String title;

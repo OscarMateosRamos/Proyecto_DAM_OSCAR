@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.modelo.Persona;
 import com.oscar.proyecto.repositorios.PersonaRepository;
@@ -155,7 +156,7 @@ public class ControladorLogin implements Initializable {
        
         switch (persona.getPerfil()) {
         case ADMIN:
-           stagemanager.switchScene(null);
+           stagemanager.switchScene(FxmlView.MENUADMIN);
             break;
 
         case PROFESOR:

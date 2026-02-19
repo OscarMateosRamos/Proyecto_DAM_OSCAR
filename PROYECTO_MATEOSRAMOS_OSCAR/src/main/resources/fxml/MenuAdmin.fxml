@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorMenuAdmin">
+
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+
+            <Label text="ADMINISTRADOR" styleClass="sidebar-title"/>
+
+            <Button text="Gestionar Profesores" fx:id="btnProfesores" styleClass="sidebar-button"
+                    onAction="#abrirGestionProfesores"/>
+
+            <Button text="Gestionar Cursos" fx:id="btnCursos" styleClass="sidebar-button"
+                    onAction="#abrirGestionCursos"/>
+
+            <Button text="Gestionar Estudiantes" fx:id="btnEstudiantes" styleClass="sidebar-button"
+                    onAction="#abrirGestionEstudiantes"/>
+
+            <Button text="Gestionar Empresas" fx:id="btnEmpresas" styleClass="sidebar-button"
+                    onAction="#abrirGestionEmpresas"/>
+
+            <Button text="Gestionar Tutores Empresa" fx:id="btnTutores" styleClass="sidebar-button"
+                    onAction="#abrirGestionTutores"/>
+
+            <Button text="Asignar Tutor a Estudiante" fx:id="btnAsignar" styleClass="sidebar-button"
+                    onAction="#abrirAsignacion"/>
+
+            <Separator/>
+
+            <Button text="Cerrar Sesión" fx:id="btnCerrarSesion" styleClass="logout-button"
+                    onAction="#cerrarSesion"/>
+        </VBox>
+    </left>
+
+   
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+            <Label text="Panel de Administración" styleClass="main-title"/>
+
+            <ImageView fitHeight="180" preserveRatio="true">
+                <image>
+                    <Image url="@/images/LogoColegio.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="Seleccione una opción del menú lateral" styleClass="main-subtitle"/>
+        </VBox>
+    </center>
+
+</BorderPane>

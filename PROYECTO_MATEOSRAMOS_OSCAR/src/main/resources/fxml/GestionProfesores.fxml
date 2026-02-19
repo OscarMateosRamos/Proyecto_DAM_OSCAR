@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorGestionProfesores">
+
+   
+    <top>
+        <HBox spacing="10" styleClass="header">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Gestión de Profesores" styleClass="header-title"/>
+        </HBox>
+    </top>
+
+    
+    <center>
+        <VBox spacing="15" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+           
+            <TableView fx:id="tablaProfesores" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                    <TableColumn fx:id="colApellidos" text="Apellidos" prefWidth="200"/>
+                    <TableColumn fx:id="colCodigo" text="Código" prefWidth="120"/>
+                    <TableColumn fx:id="colDepartamento" text="Departamento" prefWidth="150"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                </columns>
+            </TableView>
+
+           
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Añadir Profesor" fx:id="btnAñadir" styleClass="action-button"
+                        onAction="#añadirProfesor"/>
+
+                <Button text="Editar Profesor" fx:id="btnEditar" styleClass="action-button"
+                        onAction="#editarProfesor"/>
+
+                <Button text="Eliminar Profesor" fx:id="btnEliminar" styleClass="delete-button"
+                        onAction="#eliminarProfesor"/>
+
+                <Button text="Volver" fx:id="btnVolver" styleClass="back-button"
+                        onAction="#volverMenuAdmin"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

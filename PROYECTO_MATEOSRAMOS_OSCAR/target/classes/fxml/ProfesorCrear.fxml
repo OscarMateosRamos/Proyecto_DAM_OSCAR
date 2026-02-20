@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.oscar.proyecto.controller.ProfesorCrearController"
+      spacing="15"
+      alignment="CENTER"
+      styleClass="form-container" fx:id="rootPane">
+
+    <Label text="Crear Profesor" styleClass="form-title"/>
+
+    <GridPane hgap="15" vgap="12">
+        <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+
+       
+        <Label text="Persona:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboPersona" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Código Profesor:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCodigo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Departamento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtDepartamento" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtEmail" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Especialidad:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboEspecialidad" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Aula Asignada:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAula" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Es Coordinador:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="checkCoordinador" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Fecha Ingreso:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dateIngreso" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+        <Label text="Horario Tutoría:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtHorario" promptText="Ej: 10:00" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Crear" onAction="#crearProfesor" styleClass="primary-button"/>
+        <Button text="Volver" onAction="#volverGestionProfesores" styleClass="cancel-button"/>
+    </HBox>
+
+</VBox>

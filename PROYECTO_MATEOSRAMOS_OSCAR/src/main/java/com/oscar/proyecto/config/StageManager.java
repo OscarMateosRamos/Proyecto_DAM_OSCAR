@@ -20,6 +20,7 @@ public class StageManager {
 
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
+        this.primaryStage.setResizable(false);
     }
 
     public void switchScene(FxmlView view) {
@@ -31,6 +32,7 @@ public class StageManager {
             primaryStage.setTitle(view.getTitle());
             primaryStage.setScene(scene);
             primaryStage.show();
+           
         } catch (IOException e) {
             e.printStackTrace();
         }

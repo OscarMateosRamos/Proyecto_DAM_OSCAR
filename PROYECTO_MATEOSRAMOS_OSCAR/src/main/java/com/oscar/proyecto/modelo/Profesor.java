@@ -1,11 +1,16 @@
 /**
-*Clase Profesor.java
-*
-*@author Oscar Mateos Ramos
-*@version
-*/
+ * Clase Profesor.java
+ *
+ * Representa a un profesor del centro educativo.
+ * Ahora coordina las formaciones en empresa mediante la relación
+ * profesorCoordinador en FormacionEmpresa.
+ *
+ * @author Oscar
+ */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -21,135 +26,133 @@ import jakarta.persistence.Table;
 @Table(name = "profesores")
 public class Profesor extends Persona {
 
-	private String codigoProfesor;
-	private String departamento;
-	private String email;
+    private String codigoProfesor;
+    private String departamento;
+    private String email;
 
-	@Enumerated(EnumType.STRING)
-	private Especialidad especialidad;
+    @Enumerated(EnumType.STRING)
+    private Especialidad especialidad;
 
-	private String horarioTutoria;
-	private String aulaAsignada;
-	private boolean esCoordinador;
-	private String fechaIngreso;
+    private LocalDateTime horarioTutoria;
+    private String aulaAsignada;
+    private boolean esCoordinador;
+    private Date fechaIngreso;
 
-	@ManyToMany
-	@JoinTable(name = "profesor_curso", joinColumns = @JoinColumn(name = "id_profesor"), inverseJoinColumns = @JoinColumn(name = "id_curso"))
-	private List<Curso> cursosAsignados;
+    @ManyToMany
+    @JoinTable(
+        name = "profesor_curso",
+        joinColumns = @JoinColumn(name = "id_profesor"),
+        inverseJoinColumns = @JoinColumn(name = "id_curso")
+    )
+    private List<Curso> cursosAsignados;
 
-	@OneToMany(mappedBy = "profesor")
-	private List<FormacionEmpresa> formaciones;
+  
+    @OneToMany(mappedBy = "profesorCoordinador")
+    private List<FormacionEmpresa> formacionesCoordinadas;
 
-	public Profesor() {
-		super();
-	}
+    public Profesor() {
+        super();
+    }
 
-	public Profesor(String codigoProfesor, String departamento, String email,
-			Especialidad especialidad, String horarioTutoria,
-			String aulaAsignada, boolean esCoordinador, String fechaIngreso,
-			List<Curso> cursosAsignados, List<FormacionEmpresa> formaciones) {
-		super();
-		this.codigoProfesor = codigoProfesor;
-		this.departamento = departamento;
-		this.email = email;
-		this.especialidad = especialidad;
-		this.horarioTutoria = horarioTutoria;
-		this.aulaAsignada = aulaAsignada;
-		this.esCoordinador = esCoordinador;
-		this.fechaIngreso = fechaIngreso;
-		this.cursosAsignados = cursosAsignados;
-		this.formaciones = formaciones;
-	}
+    public Profesor(String codigoProfesor, String departamento, String email,
+                    Especialidad especialidad, LocalDateTime horarioTutoria,
+                    String aulaAsignada, boolean esCoordinador, Date fechaIngreso,
+                    List<Curso> cursosAsignados, List<FormacionEmpresa> formacionesCoordinadas) {
+        super();
+        this.codigoProfesor = codigoProfesor;
+        this.departamento = departamento;
+        this.email = email;
+        this.especialidad = especialidad;
+        this.horarioTutoria = horarioTutoria;
+        this.aulaAsignada = aulaAsignada;
+        this.esCoordinador = esCoordinador;
+        this.fechaIngreso = fechaIngreso;
+        this.cursosAsignados = cursosAsignados;
+        this.formacionesCoordinadas = formacionesCoordinadas;
+    }
 
-	public String getCodigoProfesor() {
-		return codigoProfesor;
-	}
+    public String getCodigoProfesor() {
+        return codigoProfesor;
+    }
 
-	public void setCodigoProfesor(String codigoProfesor) {
-		this.codigoProfesor = codigoProfesor;
-	}
+    public void setCodigoProfesor(String codigoProfesor) {
+        this.codigoProfesor = codigoProfesor;
+    }
 
-	public String getDepartamento() {
-		return departamento;
-	}
+    public String getDepartamento() {
+        return departamento;
+    }
 
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Especialidad getEspecialidad() {
-		return especialidad;
-	}
+    public Especialidad getEspecialidad() {
+        return especialidad;
+    }
 
-	public void setEspecialidad(Especialidad especialidad) {
-		this.especialidad = especialidad;
-	}
+    public void setEspecialidad(Especialidad especialidad) {
+        this.especialidad = especialidad;
+    }
 
-	public String getHorarioTutoria() {
-		return horarioTutoria;
-	}
+    public LocalDateTime getHorarioTutoria() {
+        return horarioTutoria;
+    }
 
-	public void setHorarioTutoria(String horarioTutoria) {
-		this.horarioTutoria = horarioTutoria;
-	}
+    public void setHorarioTutoria(LocalDateTime horarioTutoria) {
+        this.horarioTutoria = horarioTutoria;
+    }
 
-	public String getAulaAsignada() {
-		return aulaAsignada;
-	}
+    public String getAulaAsignada() {
+        return aulaAsignada;
+    }
 
-	public void setAulaAsignada(String aulaAsignada) {
-		this.aulaAsignada = aulaAsignada;
-	}
+    public void setAulaAsignada(String aulaAsignada) {
+        this.aulaAsignada = aulaAsignada;
+    }
 
-	public boolean isEsCoordinador() {
-		return esCoordinador;
-	}
+    public boolean isEsCoordinador() {
+        return esCoordinador;
+    }
 
-	public void setEsCoordinador(boolean esCoordinador) {
-		this.esCoordinador = esCoordinador;
-	}
+    public void setEsCoordinador(boolean esCoordinador) {
+        this.esCoordinador = esCoordinador;
+    }
 
-	public String getFechaIngreso() {
-		return fechaIngreso;
-	}
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
 
-	public void setFechaIngreso(String fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
 
-	public List<Curso> getCursosAsignados() {
-		return cursosAsignados;
-	}
+    public List<Curso> getCursosAsignados() {
+        return cursosAsignados;
+    }
 
-	public void setCursosAsignados(List<Curso> cursosAsignados) {
-		this.cursosAsignados = cursosAsignados;
-	}
+    public void setCursosAsignados(List<Curso> cursosAsignados) {
+        this.cursosAsignados = cursosAsignados;
+    }
 
-	public List<FormacionEmpresa> getFormaciones() {
-		return formaciones;
-	}
+    public List<FormacionEmpresa> getFormacionesCoordinadas() {
+        return formacionesCoordinadas;
+    }
 
-	public void setFormaciones(List<FormacionEmpresa> formaciones) {
-		this.formaciones = formaciones;
-	}
+    public void setFormacionesCoordinadas(List<FormacionEmpresa> formacionesCoordinadas) {
+        this.formacionesCoordinadas = formacionesCoordinadas;
+    }
 
-	@Override
-	public String toString() {
-		return "Profesor [codigoProfesor=" + codigoProfesor + ", departamento="
-				+ departamento + ", email=" + email + ", especialidad="
-				+ especialidad + ", horarioTutoria=" + horarioTutoria
-				+ ", aulaAsignada=" + aulaAsignada + ", esCoordinador="
-				+ esCoordinador + ", fechaIngreso=" + fechaIngreso
-				+ ", cursosAsignados=" + cursosAsignados + ", formaciones="
-				+ formaciones + "]";
-	}
-
+    @Override
+    public String toString() {
+        return getNombre() + " " + getApellidos() + " - " + codigoProfesor;
+    }
 }

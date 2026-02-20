@@ -7,6 +7,7 @@ C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\o
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioCiclo.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioDocumento.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Empresa.java
+C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionProfesores.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioPersona.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Grupo.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Estudiante.java
@@ -42,6 +43,7 @@ C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\o
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Asistencia.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Especialidad.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioProfesor.java
+C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ProfesorCrearController.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Documento.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Perfil.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioEvaluacion.java

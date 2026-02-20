@@ -26,7 +26,7 @@ public class TutorEmpresa extends Persona {
 	private String telefono;
 	private String fechaIngreso;
 
-	@OneToMany(mappedBy = "tutor")
+	@OneToMany(mappedBy = "tutorEmpresa")
 	private List<FormacionEmpresa> formaciones;
 
 	public TutorEmpresa() {

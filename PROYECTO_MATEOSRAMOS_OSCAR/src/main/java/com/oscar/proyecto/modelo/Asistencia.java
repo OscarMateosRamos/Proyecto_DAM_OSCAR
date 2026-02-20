@@ -6,6 +6,8 @@
 */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,7 +30,7 @@ public class Asistencia {
 	@JoinColumn(name = "id_formacion")
 	private FormacionEmpresa formacion;
 
-	private String fecha;
+	private Date fecha;
 
 	@Enumerated(EnumType.STRING)
 	private TipoAsistencia tipo;
@@ -40,8 +42,8 @@ public class Asistencia {
 		super();
 	}
 
-	public Asistencia(Long idAsistencia, FormacionEmpresa formacion,
-			String fecha, TipoAsistencia tipo, Justificada justificada) {
+	public Asistencia(Long idAsistencia, FormacionEmpresa formacion, Date fecha,
+			TipoAsistencia tipo, Justificada justificada) {
 		super();
 		this.idAsistencia = idAsistencia;
 		this.formacion = formacion;
@@ -66,11 +68,11 @@ public class Asistencia {
 		this.formacion = formacion;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

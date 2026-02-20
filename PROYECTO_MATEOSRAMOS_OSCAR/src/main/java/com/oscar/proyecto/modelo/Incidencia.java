@@ -6,6 +6,8 @@
 */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,14 +33,14 @@ public class Incidencia {
 	private Estudiante estudiante;
 
 	private String descripcion;
-	private String fecha;
+	private Date fecha;
 
 	public Incidencia() {
 		super();
 	}
 
 	public Incidencia(Long idIncidencia, FormacionEmpresa formacion,
-			Estudiante estudiante, String descripcion, String fecha) {
+			Estudiante estudiante, String descripcion, Date fecha) {
 		super();
 		this.idIncidencia = idIncidencia;
 		this.formacion = formacion;
@@ -79,11 +81,11 @@ public class Incidencia {
 		this.descripcion = descripcion;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

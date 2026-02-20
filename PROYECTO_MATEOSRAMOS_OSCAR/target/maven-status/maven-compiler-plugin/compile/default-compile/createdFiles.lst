@@ -18,6 +18,7 @@ com\oscar\proyecto\services\ServicioProfesor.class
 com\oscar\proyecto\modelo\Documento.class
 com\oscar\proyecto\services\ServicioFormacionEmpresa.class
 com\oscar\proyecto\services\ServicioCurso.class
+com\oscar\proyecto\controller\ProfesorCrearController.class
 com\oscar\proyecto\repositorios\PersonaRepository.class
 com\oscar\proyecto\repositorios\CursoRepository.class
 com\oscar\proyecto\Tarea3DamApplication.class
@@ -35,6 +36,7 @@ com\oscar\proyecto\services\ServicioPersona.class
 com\oscar\proyecto\services\ServicioSesion.class
 com\oscar\proyecto\modelo\Estudiante.class
 com\oscar\proyecto\modelo\FormacionEmpresa.class
+com\oscar\proyecto\controller\ControladorGestionProfesores.class
 com\oscar\proyecto\repositorios\EstudianteRepository.class
 com\oscar\proyecto\config\StageManager.class
 com\oscar\proyecto\repositorios\EvaluacionRepository.class

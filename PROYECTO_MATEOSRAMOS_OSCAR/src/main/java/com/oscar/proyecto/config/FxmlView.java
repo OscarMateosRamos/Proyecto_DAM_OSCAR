@@ -5,7 +5,9 @@ public enum FxmlView {
     LOGIN("/fxml/Login.fxml", "Inicio de Sesion", "/styles/Login.css"),
 	MENUADMIN("/fxml/MenuAdmin.fxml", "Menu Admin", "/styles/MenuAdmin.css"),
 	GESTIONPROFESORES("/fxml/GestionProfesores.fxml", "Gestion de Profesores", "/styles/GestionProfesores.css"),
+	GESTIONPERSONAS("/fxml/GestionPersonas.fxml", "Gestion de Personas", "/styles/GestionPersona.css"),
 	CREARPROFESOR("/fxml/ProfesorCrear.fxml", "Crear Profesores", "/styles/ProfesorCrear.css");
+	
     private final String fxmlFile;
     private final String title;
     private final String cssFile;

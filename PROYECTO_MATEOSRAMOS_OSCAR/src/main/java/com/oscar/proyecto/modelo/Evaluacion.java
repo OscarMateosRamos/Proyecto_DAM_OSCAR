@@ -6,6 +6,8 @@
 */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,14 +30,16 @@ public class Evaluacion {
 
 	private Double nota;
 	private String comentarios;
-	private String fecha;
+	private Date fecha;
 
 	public Evaluacion() {
 		super();
 	}
 
+	
+
 	public Evaluacion(Long idEvaluacion, FormacionEmpresa formacion,
-			Double nota, String comentarios, String fecha) {
+			Double nota, String comentarios, Date fecha) {
 		super();
 		this.idEvaluacion = idEvaluacion;
 		this.formacion = formacion;
@@ -43,6 +47,8 @@ public class Evaluacion {
 		this.comentarios = comentarios;
 		this.fecha = fecha;
 	}
+
+
 
 	public Long getIdEvaluacion() {
 		return idEvaluacion;
@@ -76,13 +82,19 @@ public class Evaluacion {
 		this.comentarios = comentarios;
 	}
 
-	public String getFecha() {
+	
+
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+
+
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -90,5 +102,9 @@ public class Evaluacion {
 				+ formacion + ", nota=" + nota + ", comentarios=" + comentarios
 				+ ", fecha=" + fecha + "]";
 	}
+
+
+
+	
 
 }

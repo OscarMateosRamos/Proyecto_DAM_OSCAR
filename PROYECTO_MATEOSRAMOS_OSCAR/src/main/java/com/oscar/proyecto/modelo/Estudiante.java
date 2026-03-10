@@ -6,6 +6,7 @@
 */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class Estudiante extends Persona {
 	private String email;
 	private String direccion;
 	private String telefono;
-	private String fechanac;
+	private Date fechanac;
 	private String dni;
 	private LocalDateTime horario;
 	private String curso;
@@ -42,7 +43,7 @@ public class Estudiante extends Persona {
 	}
 
 	public Estudiante(Grupo grupo, String email, String direccion,
-			String telefono, String fechanac, String dni, LocalDateTime horario,
+			String telefono, Date fechanac, String dni, LocalDateTime horario,
 			String curso, List<FormacionEmpresa> formaciones,
 			List<Incidencia> incidencias) {
 		super();
@@ -90,11 +91,11 @@ public class Estudiante extends Persona {
 		this.telefono = telefono;
 	}
 
-	public String getFechanac() {
+	public Date getFechanac() {
 		return fechanac;
 	}
 
-	public void setFechanac(String fechanac) {
+	public void setFechanac(Date fechanac) {
 		this.fechanac = fechanac;
 	}
 

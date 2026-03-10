@@ -6,6 +6,7 @@
 */
 package com.oscar.proyecto.modelo;
 
+import java.sql.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ public class TutorEmpresa extends Persona {
 
 	private String email;
 	private String telefono;
-	private String fechaIngreso;
+	private Date fechaIngreso;
 
 	@OneToMany(mappedBy = "tutorEmpresa")
 	private List<FormacionEmpresa> formaciones;
@@ -34,7 +35,7 @@ public class TutorEmpresa extends Persona {
 	}
 
 	public TutorEmpresa(Empresa empresa, String email, String telefono,
-			String fechaIngreso, List<FormacionEmpresa> formaciones) {
+			Date fechaIngreso, List<FormacionEmpresa> formaciones) {
 		super();
 		this.empresa = empresa;
 		this.email = email;
@@ -67,11 +68,11 @@ public class TutorEmpresa extends Persona {
 		this.telefono = telefono;
 	}
 
-	public String getFechaIngreso() {
+	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(String fechaIngreso) {
+	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 

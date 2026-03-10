@@ -1,13 +1,7 @@
-/**
-*Clase Empresa.java
-*
-*@author Oscar Mateos Ramos
-*@version
-*/
 package com.oscar.proyecto.modelo;
 
+import java.time.LocalTime;
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,67 +13,78 @@ import jakarta.persistence.Table;
 @Table(name = "empresas")
 public class Empresa {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idEmpresa;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEmpresa;
 
-	private String nombre;
+    private String nombre;
 
-	@OneToMany(mappedBy = "empresa")
-	private List<TutorEmpresa> tutores;
+    private LocalTime horario; 
 
-	@OneToMany(mappedBy = "empresa")
-	private List<FormacionEmpresa> formaciones;
+    @OneToMany(mappedBy = "empresa")
+    private List<TutorEmpresa> tutores;
 
-	public Empresa() {
-		super();
-	}
+    @OneToMany(mappedBy = "empresa")
+    private List<FormacionEmpresa> formaciones;
 
-	public Empresa(Long idEmpresa, String nombre, List<TutorEmpresa> tutores,
-			List<FormacionEmpresa> formaciones) {
-		super();
-		this.idEmpresa = idEmpresa;
-		this.nombre = nombre;
-		this.tutores = tutores;
-		this.formaciones = formaciones;
-	}
+    public Empresa() {
+        super();
+    }
 
-	public Long getIdEmpresa() {
-		return idEmpresa;
-	}
+    public Empresa(Long idEmpresa, String nombre, LocalTime horario, List<TutorEmpresa> tutores,
+            List<FormacionEmpresa> formaciones) {
+        super();
+        this.idEmpresa = idEmpresa;
+        this.nombre = nombre;
+        this.horario = horario;
+        this.tutores = tutores;
+        this.formaciones = formaciones;
+    }
 
-	public void setIdEmpresa(Long idEmpresa) {
-		this.idEmpresa = idEmpresa;
-	}
+    // Getters y setters
+    public Long getIdEmpresa() {
+        return idEmpresa;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setIdEmpresa(Long idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public List<TutorEmpresa> getTutores() {
-		return tutores;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setTutores(List<TutorEmpresa> tutores) {
-		this.tutores = tutores;
-	}
+    public LocalTime getHorario() { 
+        return horario;
+    }
 
-	public List<FormacionEmpresa> getFormaciones() {
-		return formaciones;
-	}
+    public void setHorario(LocalTime horario) { 
+        this.horario = horario;
+    }
 
-	public void setFormaciones(List<FormacionEmpresa> formaciones) {
-		this.formaciones = formaciones;
-	}
+    public List<TutorEmpresa> getTutores() {
+        return tutores;
+    }
 
-	@Override
-	public String toString() {
-		return "Empresa [idEmpresa=" + idEmpresa + ", nombre=" + nombre
-				+ ", tutores=" + tutores + ", formaciones=" + formaciones + "]";
-	}
+    public void setTutores(List<TutorEmpresa> tutores) {
+        this.tutores = tutores;
+    }
 
+    public List<FormacionEmpresa> getFormaciones() {
+        return formaciones;
+    }
+
+    public void setFormaciones(List<FormacionEmpresa> formaciones) {
+        this.formaciones = formaciones;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa [idEmpresa=" + idEmpresa + ", nombre=" + nombre + ", horario=" + horario
+                + ", tutores=" + tutores + ", formaciones=" + formaciones + "]";
+    }
 }

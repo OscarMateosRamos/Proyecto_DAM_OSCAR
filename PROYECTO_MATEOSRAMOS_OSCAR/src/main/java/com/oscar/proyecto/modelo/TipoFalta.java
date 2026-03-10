@@ -6,6 +6,6 @@
 */
 package com.oscar.proyecto.modelo;
 
-public enum TipoAsistencia {
+public enum TipoFalta {
 	FALTA,RETRASO,ASISTENCIA
 }

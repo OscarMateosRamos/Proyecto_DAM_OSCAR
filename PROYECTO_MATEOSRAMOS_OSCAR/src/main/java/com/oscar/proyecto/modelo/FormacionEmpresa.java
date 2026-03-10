@@ -47,7 +47,7 @@ public class FormacionEmpresa {
 	private Periodo periodo;
 
 	@OneToMany(mappedBy = "formacion")
-	private List<Asistencia> asistencias;
+	private List<Falta> faltas;
 
 	@OneToMany(mappedBy = "formacion")
 	private List<Documento> documentos;
@@ -64,9 +64,9 @@ public class FormacionEmpresa {
 	public FormacionEmpresa(Long idFormacion, Estudiante estudiante,
 			Empresa empresa, TutorEmpresa tutorEmpresa,
 			Profesor profesorCoordinador, Date fechaInicio, Date fechaFin,
-			Periodo periodo, List<Asistencia> asistencias,
-			List<Documento> documentos, List<Incidencia> incidencias,
-			Evaluacion evaluacion) {
+			Periodo periodo, List<Falta> faltas, List<Documento> documentos,
+			List<Incidencia> incidencias, Evaluacion evaluacion) {
+		super();
 		this.idFormacion = idFormacion;
 		this.estudiante = estudiante;
 		this.empresa = empresa;
@@ -75,7 +75,7 @@ public class FormacionEmpresa {
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.periodo = periodo;
-		this.asistencias = asistencias;
+		this.faltas = faltas;
 		this.documentos = documentos;
 		this.incidencias = incidencias;
 		this.evaluacion = evaluacion;
@@ -145,12 +145,12 @@ public class FormacionEmpresa {
 		this.periodo = periodo;
 	}
 
-	public List<Asistencia> getAsistencias() {
-		return asistencias;
+	public List<Falta> getFaltas() {
+		return faltas;
 	}
 
-	public void setAsistencias(List<Asistencia> asistencias) {
-		this.asistencias = asistencias;
+	public void setFaltas(List<Falta> faltas) {
+		this.faltas = faltas;
 	}
 
 	public List<Documento> getDocumentos() {
@@ -179,13 +179,13 @@ public class FormacionEmpresa {
 
 	@Override
 	public String toString() {
-		return "FormacionEmpresa{" + "idFormacion=" + idFormacion
-				+ ", estudiante=" + estudiante + ", empresa=" + empresa
-				+ ", tutorEmpresa=" + tutorEmpresa + ", profesorCoordinador="
-				+ profesorCoordinador + ", fechaInicio=" + fechaInicio
-				+ ", fechaFin=" + fechaFin + ", periodo=" + periodo
-				+ ", asistencias=" + asistencias + ", documentos=" + documentos
-				+ ", incidencias=" + incidencias + ", evaluacion=" + evaluacion
-				+ '}';
+		return "FormacionEmpresa [idFormacion=" + idFormacion + ", estudiante="
+				+ estudiante + ", empresa=" + empresa + ", tutorEmpresa="
+				+ tutorEmpresa + ", profesorCoordinador=" + profesorCoordinador
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", periodo=" + periodo + ", faltas=" + faltas
+				+ ", documentos=" + documentos + ", incidencias=" + incidencias
+				+ ", evaluacion=" + evaluacion + "]";
 	}
+
 }

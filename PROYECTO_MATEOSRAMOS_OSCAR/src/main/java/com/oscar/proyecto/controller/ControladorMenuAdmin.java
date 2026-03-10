@@ -56,6 +56,7 @@ public class ControladorMenuAdmin {
 
 	@FXML
 	private void abrirGestionPersonas() {
+		stageManager.switchScene(FxmlView.GESTIONPERSONAS);
 
 	}
 

@@ -81,8 +81,7 @@ public class Grupo {
 
 	@Override
 	public String toString() {
-		return "Grupo [idGrupo=" + idGrupo + ", curso=" + curso + ", nombre="
-				+ nombre + ", estudiantes=" + estudiantes + "]";
+	    return nombre + (curso != null ? " - " + curso.getNombre() : "");
 	}
 
 }

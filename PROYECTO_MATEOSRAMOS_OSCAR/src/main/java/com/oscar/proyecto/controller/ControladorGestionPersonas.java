@@ -195,30 +195,52 @@ public class ControladorGestionPersonas {
             alert.showAndWait();
         }
     }
-
+    
     @FXML
     private void eliminarPersona() {
         Persona personaSeleccionada = tablaPersonas.getSelectionModel().getSelectedItem();
-        if (personaSeleccionada != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmar eliminación");
-            alert.setHeaderText("¿Estás seguro de que quieres eliminar a esta persona?");
-            alert.setContentText(personaSeleccionada.getNombre() + " " + personaSeleccionada.getApellidos());
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                personaServicio.eliminarPersona(personaSeleccionada.getIdPersona());
-                listaPersonas.remove(personaSeleccionada);
-                tablaPersonas.setItems(listaPersonas);
-            }
-        } else {
+        if (personaSeleccionada == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("No se ha seleccionado ninguna persona");
             alert.setContentText("Por favor, selecciona una persona de la tabla.");
             alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar eliminación");
+        alert.setHeaderText("¿Estás seguro de que quieres eliminar a esta persona?");
+        alert.setContentText(personaSeleccionada.getNombre() + " " + personaSeleccionada.getApellidos());
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                personaServicio.eliminarPersona(personaSeleccionada.getIdPersona());
+                listaPersonas.remove(personaSeleccionada);
+                tablaPersonas.refresh();
+
+            } catch (IllegalStateException e) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("No se puede eliminar");
+                error.setHeaderText("Eliminación bloqueada");
+                error.setContentText(e.getMessage());
+                error.showAndWait();
+
+            } catch (Exception e) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Error inesperado");
+                error.setHeaderText("No se pudo eliminar la persona");
+                error.setContentText("Detalles: " + e.getMessage());
+                error.showAndWait();
+            }
         }
     }
+
+
+   
 
     @FXML
     private void volverMenuAdmin() {

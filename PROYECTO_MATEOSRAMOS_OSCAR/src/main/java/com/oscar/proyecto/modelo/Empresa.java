@@ -84,7 +84,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa [idEmpresa=" + idEmpresa + ", nombre=" + nombre + ", horario=" + horario
-                + ", tutores=" + tutores + ", formaciones=" + formaciones + "]";
+        return nombre;
     }
+
 }

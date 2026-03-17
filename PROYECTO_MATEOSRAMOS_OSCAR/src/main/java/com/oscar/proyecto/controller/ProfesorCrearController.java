@@ -100,7 +100,8 @@ public class ProfesorCrearController {
             profesor.setEspecialidad(comboEspecialidad.getValue());
             profesor.setAulaAsignada(txtAula.getText());
             profesor.setEsCoordinador(checkCoordinador.isSelected());
-            profesor.setFechaIngreso(Date.valueOf(fecha));
+            profesor.setFechaIngreso(fecha);
+
             profesor.setHorarioTutoria(horarioTutoria);
 
             profesorServicio.guardarProfesor(profesor);

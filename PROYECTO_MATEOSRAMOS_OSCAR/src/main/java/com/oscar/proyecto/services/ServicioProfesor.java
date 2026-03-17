@@ -28,9 +28,20 @@ public class ServicioProfesor {
 		return profesorRepositorio.save(profesor);
 	}
 
-	public void eliminarProfesor(Long id) {
-		profesorRepositorio.deleteById(id);
+	public void eliminarProfesor(Long idPersona) {
+
+	    Profesor profesor = profesorRepositorio.findById(idPersona)
+	            .orElseThrow(() -> new IllegalStateException("Profesor no encontrado"));
+
+	    if (!profesor.getFormacionesCoordinadas().isEmpty()) {
+	        throw new IllegalStateException(
+	            "No se puede eliminar este profesor porque coordina formaciones en empresa borra la formacion primero."
+	        );
+	    }
+
+	    profesorRepositorio.deleteById(idPersona);
 	}
+
 
 	public Profesor buscarPorId(Long id) {
 		return profesorRepositorio.findById(id).orElse(null);

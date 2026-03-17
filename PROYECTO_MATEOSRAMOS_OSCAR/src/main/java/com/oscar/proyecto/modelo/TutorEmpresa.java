@@ -86,9 +86,7 @@ public class TutorEmpresa extends Persona {
 
 	@Override
 	public String toString() {
-		return "TutorEmpresa [empresa=" + empresa + ", email=" + email
-				+ ", telefono=" + telefono + ", fechaIngreso=" + fechaIngreso
-				+ ", formaciones=" + formaciones + "]";
+		return getNombre() + " " + getApellidos();
 	}
 
 }

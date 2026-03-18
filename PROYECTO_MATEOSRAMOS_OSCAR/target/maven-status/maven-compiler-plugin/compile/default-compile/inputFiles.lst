@@ -1,4 +1,5 @@
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\FormacionEmpresa.java
+C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\GrupoRepository.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioEmpresa.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Falta.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioSesion.java
@@ -35,7 +36,6 @@ C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\o
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Justificada.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioGrupo.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\EstudianteRepository.java
-C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\GrupoRepositoy.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioFormacionEmpresa.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioFalta.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\ProfesorRepository.java
@@ -45,6 +45,7 @@ C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\o
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Periodo.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Especialidad.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioProfesor.java
+C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionEstudiantes.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ProfesorCrearController.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Documento.java
 C:\Users\oscar\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Perfil.java

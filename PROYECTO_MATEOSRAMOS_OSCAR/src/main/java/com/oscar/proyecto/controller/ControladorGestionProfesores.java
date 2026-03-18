@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.modelo.Especialidad;
+import com.oscar.proyecto.modelo.Perfil;
 import com.oscar.proyecto.modelo.Persona;
 import com.oscar.proyecto.modelo.Profesor;
 import com.oscar.proyecto.services.ServicioPersona;
@@ -100,7 +101,13 @@ public class ControladorGestionProfesores {
         grid.setPadding(new Insets(20, 150, 10, 10));
 
         ComboBox<Persona> comboPersona = new ComboBox<>();
-        comboPersona.getItems().setAll(personaServicio.listarPersonas());
+        comboPersona.getItems().setAll(
+        	    personaServicio.listarPersonas()
+        	        .stream()
+        	        .filter(p -> p.getPerfil() == Perfil.PROFESOR)
+        	        .toList()
+        	);
+
         comboPersona.setPromptText("Selecciona persona");
 
         TextField codigo = new TextField();

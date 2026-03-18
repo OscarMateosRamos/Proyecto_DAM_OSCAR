@@ -7,6 +7,7 @@ com\oscar\proyecto\services\ServicioGrupo.class
 com\oscar\proyecto\modelo\Ciclo.class
 com\oscar\proyecto\modelo\Curso.class
 com\oscar\proyecto\modelo\Falta.class
+com\oscar\proyecto\controller\ControladorGestionEstudiantes.class
 com\oscar\proyecto\modelo\Empresa.class
 com\oscar\proyecto\services\ServicioEmpresa.class
 com\oscar\proyecto\controller\ControladorLogin.class
@@ -20,13 +21,13 @@ com\oscar\proyecto\services\ServicioCurso.class
 com\oscar\proyecto\controller\ProfesorCrearController.class
 com\oscar\proyecto\repositorios\PersonaRepository.class
 com\oscar\proyecto\modelo\Periodo.class
+com\oscar\proyecto\repositorios\GrupoRepository.class
 com\oscar\proyecto\repositorios\CursoRepository.class
 com\oscar\proyecto\Tarea3DamApplication.class
 com\oscar\proyecto\repositorios\ProfesorRepository.class
 com\oscar\proyecto\repositorios\AsistenciaRepository.class
 com\oscar\proyecto\repositorios\FormacionEmpresaRepository.class
 com\oscar\proyecto\services\ServicioTutorEmpresa.class
-com\oscar\proyecto\repositorios\GrupoRepositoy.class
 com\oscar\proyecto\controller\ControladorGestionPersonas.class
 com\oscar\proyecto\repositorios\DocumentoRepository.class
 com\oscar\proyecto\controller\ControladorBienvenida.class

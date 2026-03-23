@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorMenuAdmin" fx:id="rootPane">
+
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+
+            <Label text=" BIENVENIDO + Nombre Estudiante" styleClass="sidebar-title"/>
+
+            <Button text="Ver informacion de la Formacion"  styleClass="sidebar-button"
+                    onAction="#abrirGestionProfesores"/>
+
+            <Button text=" Registrar Incidencia"  styleClass="sidebar-button"
+                    onAction="#abrirGestionCursos"/>
+
+            <Button text="Ver datos de Empresa y Tutor"  styleClass="sidebar-button"
+                    onAction="#abrirGestionEstudiantes"/>
+
+            <Button text="Adjuntar Justificante"  styleClass="sidebar-button"
+                    onAction="#abrirGestionEmpresas"/>
+
+           
+
+            <Separator/>
+
+            <Button text="Cerrar Sesión"  styleClass="logout-button"
+                    onAction="#cerrarSesion"/>
+        </VBox>
+    </left>
+
+   
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+            <Label text="Panel de  Estudiante" styleClass="main-title"/>
+
+            <ImageView fitHeight="180" preserveRatio="true">
+                <image>
+                    <Image url="@images/Estudiante.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="Seleccione una opción del menú lateral" styleClass="main-subtitle"/>
+        </VBox>
+    </center>
+
+</BorderPane>

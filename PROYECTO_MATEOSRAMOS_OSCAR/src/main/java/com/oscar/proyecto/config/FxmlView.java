@@ -4,6 +4,7 @@ public enum FxmlView {
     BIENVENIDA("/fxml/Bienvenida.fxml", "Bienvenida", "/styles/Bienvenida.css"),
     LOGIN("/fxml/Login.fxml", "Inicio de Sesion", "/styles/Login.css"),
 	MENUADMIN("/fxml/MenuAdmin.fxml", "Menu Admin", "/styles/MenuAdmin.css"),
+	MENUESTUDIANTE("/fxml/MenuEstudiante.fxml", "Menu  Estudiante", "/styles/MenuEstudiante.css"),
 	GESTIONPROFESORES("/fxml/GestionProfesores.fxml", "Gestion de Profesores", "/styles/GestionProfesores.css"),
 	GESTIONPERSONAS("/fxml/GestionPersonas.fxml", "Gestion de Personas", "/styles/GestionPersona.css"),
 	GESTIONESTUDIANTES("/fxml/GestionEstudiantes.fxml", "Gestion de Estudiantes", "/styles/GestionEstudiantes.css")

@@ -7,57 +7,59 @@
 <?import javafx.scene.image.Image?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.oscar.proyecto.controller.ControladorMenuAdmin" fx:id="rootPane">
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.oscar.proyecto.controller.ControladorMenuAdmin"
+	fx:id="rootPane">
 
-    <left>
-        <VBox spacing="15" styleClass="sidebar">
-            <padding>
-                <Insets top="20" right="10" bottom="20" left="10"/>
-            </padding>
+	<left>
+		<VBox spacing="15" styleClass="sidebar">
+			<padding>
+				<Insets top="20" right="10" bottom="20" left="10" />
+			</padding>
 
-            <Label text=" BIENVENIDO ADMINISTRADOR" styleClass="sidebar-title"/>
+			<Label text=" BIENVENIDO  ADMIN" styleClass="sidebar-title" />
 
-            <Button text="Gestionar Profesores"  styleClass="sidebar-button"
-                    onAction="#abrirGestionProfesores"/>
+			<Button text="Gestionar Profesores"
+				styleClass="sidebar-button" onAction="#abrirGestionProfesores" />
 
-            <Button text="Gestionar Cursos"  styleClass="sidebar-button"
-                    onAction="#abrirGestionCursos"/>
+			<Button text="Gestionar Cursos" styleClass="sidebar-button"
+				onAction="#abrirGestionCursos" />
 
-            <Button text="Gestionar Estudiantes"  styleClass="sidebar-button"
-                    onAction="#abrirGestionEstudiantes"/>
+			<Button text="Gestionar Estudiantes"
+				styleClass="sidebar-button" onAction="#abrirGestionEstudiantes" />
 
-            <Button text="Gestionar Empresas"  styleClass="sidebar-button"
-                    onAction="#abrirGestionEmpresas"/>
+			<Button text="Gestionar Empresas" styleClass="sidebar-button"
+				onAction="#abrirGestionEmpresas" />
 
-            <Button text="Gestionar Tutores Empresa"  styleClass="sidebar-button"
-                    onAction="#abrirGestionTutores"/>
-			
-			
-            <Button text="Gestionar Personas"  styleClass="sidebar-button"
-                    onAction="#abrirGestionPersonas"/>
-			
+			<Button text="Gestionar Tutores Empresa"
+				styleClass="sidebar-button" onAction="#abrirGestionTutores" />
 
-            <Separator/>
 
-            <Button text="Cerrar Sesión"  styleClass="logout-button"
-                    onAction="#cerrarSesion"/>
-        </VBox>
-    </left>
+			<Button text="Gestionar Personas" styleClass="sidebar-button"
+				onAction="#abrirGestionPersonas" />
 
-   
-    <center>
-        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
-            <Label text="Panel de Administrador" styleClass="main-title"/>
 
-            <ImageView fitHeight="180" preserveRatio="true">
-                <image>
-                    <Image url="@/images/LogoColegio.png"/>
-                </image>
-            </ImageView>
+			<Separator />
 
-            <Label text="Seleccione una opción del menú lateral" styleClass="main-subtitle"/>
-        </VBox>
-    </center>
+			<Button text="Cerrar Sesión" styleClass="logout-button"
+				onAction="#cerrarSesion" />
+		</VBox>
+	</left>
+
+
+	<center>
+		<VBox alignment="CENTER" spacing="20" styleClass="main-content">
+			<Label text="Panel de Administrador" styleClass="main-title" />
+
+			<ImageView fitHeight="180" preserveRatio="true">
+				<image>
+					<Image url="@/images/LogoColegio.png" />
+				</image>
+			</ImageView>
+
+			<Label text="Seleccione una opción del menú lateral"
+				styleClass="main-subtitle" />
+		</VBox>
+	</center>
 
 </BorderPane>

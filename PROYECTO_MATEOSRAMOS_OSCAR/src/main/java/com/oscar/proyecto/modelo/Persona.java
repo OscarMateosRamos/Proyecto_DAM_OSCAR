@@ -6,6 +6,7 @@
 */
 package com.oscar.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,6 +28,8 @@ public class Persona {
 
 	private String nombre;
 	private String apellidos;
+
+	@Column(unique = true)
 	private String usuario;
 	private String contraseña;
 

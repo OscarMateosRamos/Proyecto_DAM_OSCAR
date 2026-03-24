@@ -2,7 +2,6 @@
 *Clase ControladorMenuEstudiante.java
 *
 *@author Oscar Mateos Ramos
-*@version
 */
 package com.oscar.proyecto.controller;
 
@@ -13,15 +12,16 @@ import org.springframework.stereotype.Controller;
 
 import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
+import com.oscar.proyecto.modelo.Persona;
 import com.oscar.proyecto.services.ServicioSesion;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 @Controller
 public class ControladorMenuEstudiante {
-	
-	
+
 	@Autowired
 	private StageManager stageManager;
 
@@ -32,9 +32,25 @@ public class ControladorMenuEstudiante {
 	private BorderPane rootPane;
 
 	@FXML
+	private Label lblBienvenida; 
+
+	@FXML
 	public void initialize() {
 		cargarEstilos();
+		cargarNombreEstudiante(); 
 	}
+
+	
+	private void cargarNombreEstudiante() {
+	    Persona usuario = sesionServicio.getUsuarioActual();
+
+	    if (usuario != null) {
+	        lblBienvenida.setText("BIENVENIDO " + usuario.getNombre()+" "+usuario.getApellidos());
+	    } else {
+	        lblBienvenida.setText("BIENVENIDO");
+	    }
+	}
+
 
 	@FXML
 	private void abrirGestionProfesores() {
@@ -64,7 +80,6 @@ public class ControladorMenuEstudiante {
 	@FXML
 	private void abrirGestionPersonas() {
 		stageManager.switchScene(FxmlView.GESTIONPERSONAS);
-
 	}
 
 	private void cargarEstilos() {

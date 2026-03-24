@@ -11,6 +11,7 @@ import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.modelo.Persona;
 import com.oscar.proyecto.repositorios.PersonaRepository;
+import com.oscar.proyecto.services.ServicioSesion;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,178 +27,170 @@ import javafx.scene.layout.VBox;
 @Component
 public class ControladorLogin implements Initializable {
 
-    @FXML private VBox rootPane;
-    @FXML private TextField usuarioField;
+	@FXML
+	private VBox rootPane;
+	@FXML
+	private TextField usuarioField;
 
-    @FXML private PasswordField passwordField;
-    @FXML private TextField passwordVisibleField;
+	@FXML
+	private PasswordField passwordField;
+	@FXML
+	private TextField passwordVisibleField;
 
-    @FXML private ImageView togglePasswordIcon;
+	@FXML
+	private ImageView togglePasswordIcon;
 
-    @FXML private Button iniciarSesionButton;
-    @FXML private Button recuperarPasswordButton;
+	@FXML
+	private Button iniciarSesionButton;
+	@FXML
+	private Button recuperarPasswordButton;
 
-    @FXML private Label mensajeLabel;
-    
-    @FXML
-    private ImageView Logo;
-    
-    @Autowired
-    PersonaRepository personaRepository;
-    
-    @Autowired
-    StageManager stagemanager;
-    private boolean passwordVisible = false;
+	@FXML
+	private Label mensajeLabel;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cargarEstilos();
-        cargarImagen();
-    }
+	@FXML
+	private ImageView Logo;
 
-    private void cargarImagen() {
-    	 try (InputStream inputStream = getClass().getResourceAsStream("/images/LogoColegio.png")) {
-             if (inputStream != null) {
-                 Logo.setImage(new Image(inputStream));
-             } else {
-                 System.err.println("Imagen NO encontrada en: /img/circo.png");
-             }
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-    }
+	@Autowired
+	PersonaRepository personaRepository;
 
-    private void cargarEstilos() {
-        try {
-            String cssPath = "/styles/login.css";
-            URL cssUrl = getClass().getResource(cssPath);
-            if (cssUrl != null) {
-                rootPane.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("CSS NO encontrado en: " + cssPath);
-            }
-        } catch (Exception e) {
-            System.err.println("Error al cargar el CSS: " + e.getMessage());
-        }
-    }
+	@Autowired
+	StageManager stagemanager;
 
-    @FXML
-    private void togglePasswordVisibility() {
-        passwordVisible = !passwordVisible;
+	@Autowired
+	private ServicioSesion sesionServicio;
 
-        if (passwordVisible) {
-           
-            passwordVisibleField.setText(passwordField.getText());
-            passwordVisibleField.setVisible(true);
-            passwordVisibleField.setManaged(true);
+	private boolean passwordVisible = false;
 
-            passwordField.setVisible(false);
-            passwordField.setManaged(false);
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		cargarEstilos();
+		cargarImagen();
+	}
 
-            togglePasswordIcon.setImage(
-                new Image(getClass().getResourceAsStream("/icons/OjoCerrado.png"))
-            );
+	private void cargarImagen() {
+		try (InputStream inputStream = getClass()
+				.getResourceAsStream("/images/LogoColegio.png")) {
+			if (inputStream != null) {
+				Logo.setImage(new Image(inputStream));
+			} else {
+				System.err.println("Imagen NO encontrada en: /img/circo.png");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        } else {
-           
-            passwordField.setText(passwordVisibleField.getText());
-            passwordField.setVisible(true);
-            passwordField.setManaged(true);
+	private void cargarEstilos() {
+		try {
+			String cssPath = "/styles/login.css";
+			URL cssUrl = getClass().getResource(cssPath);
+			if (cssUrl != null) {
+				rootPane.getStylesheets().add(cssUrl.toExternalForm());
+			} else {
+				System.err.println("CSS NO encontrado en: " + cssPath);
+			}
+		} catch (Exception e) {
+			System.err.println("Error al cargar el CSS: " + e.getMessage());
+		}
+	}
 
-            passwordVisibleField.setVisible(false);
-            passwordVisibleField.setManaged(false);
+	@FXML
+	private void togglePasswordVisibility() {
+		passwordVisible = !passwordVisible;
 
-            togglePasswordIcon.setImage(
-                new Image(getClass().getResourceAsStream("/icons/OjoAbierto.png"))
-            );
-        }
-    }
+		if (passwordVisible) {
+			passwordVisibleField.setText(passwordField.getText());
+			passwordVisibleField.setVisible(true);
+			passwordVisibleField.setManaged(true);
 
-    @FXML
-    private void handleIniciarSesion(javafx.event.ActionEvent event) {
+			passwordField.setVisible(false);
+			passwordField.setManaged(false);
 
-        String usuario = usuarioField.getText();
+			togglePasswordIcon.setImage(new Image(
+					getClass().getResourceAsStream("/icons/OjoCerrado.png")));
 
-        
-        String password = passwordField.isVisible()
-                ? passwordField.getText()
-                : passwordVisibleField.getText();
+		} else {
+			passwordField.setText(passwordVisibleField.getText());
+			passwordField.setVisible(true);
+			passwordField.setManaged(true);
 
-      
-        if (usuario.isEmpty() || password.isEmpty()) {
-            mensajeLabel.setText("Usuario y contraseña son obligatorios.");
-            mensajeLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
+			passwordVisibleField.setVisible(false);
+			passwordVisibleField.setManaged(false);
 
-       
-        Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
+			togglePasswordIcon.setImage(new Image(
+					getClass().getResourceAsStream("/icons/OjoAbierto.png")));
+		}
+	}
 
-        if (persona == null) {
-            mensajeLabel.setText("Usuario no encontrado.");
-            mensajeLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
+	@FXML
+	private void handleIniciarSesion(javafx.event.ActionEvent event) {
 
-        
-        if (!persona.getContraseña().equals(password)) {
-            mensajeLabel.setText("Contraseña incorrecta.");
-            mensajeLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
+		String usuario = usuarioField.getText();
+		String password = passwordField.isVisible() ? passwordField.getText()
+				: passwordVisibleField.getText();
 
-        
-        mensajeLabel.setText("Inicio de sesión correcto.");
-        mensajeLabel.setStyle("-fx-text-fill: green;");
+		if (usuario.isEmpty() || password.isEmpty()) {
+			mensajeLabel.setText("Usuario y contraseña son obligatorios.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-        
-     
+		Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
 
-       
-        switch (persona.getPerfil()) {
-        case ADMIN:
-           stagemanager.switchScene(FxmlView.MENUADMIN);
-            break;
+		if (persona == null) {
+			mensajeLabel.setText("Usuario no encontrado.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-        case PROFESOR:
-           
-            break;
+		if (!persona.getContraseña().equals(password)) {
+			mensajeLabel.setText("Contraseña incorrecta.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-        case  TUTOR:
-         
-            break;
-            
-            
-        case  ESTUDIANTE:
-        	stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
-            
-            break;
+		mensajeLabel.setText("Inicio de sesión correcto.");
+		mensajeLabel.setStyle("-fx-text-fill: green;");
 
-        default:
-            mensajeLabel.setText("Perfil no reconocido.");
-            mensajeLabel.setStyle("-fx-text-fill: red;");
-    }
+		sesionServicio.setUsuarioActual(persona);
 
-    }
+		switch (persona.getPerfil()) {
+		case ADMIN:
+			stagemanager.switchScene(FxmlView.MENUADMIN);
+			break;
 
+		case PROFESOR:
+			break;
 
-    @FXML
-    private void handleRecuperarPassword() {
-        System.out.println("Recuperar contraseña");
-    }
+		case TUTOR:
+			break;
 
-    @FXML
-    private void mostrarAyuda() {
-        Alert ayuda = new Alert(Alert.AlertType.INFORMATION);
-        ayuda.setTitle("Ayuda - Inicio de Sesión");
-        ayuda.setHeaderText("¿Cómo iniciar sesión?");
-        ayuda.setContentText(
-                "1. Introduce tu usuario.\n" +
-                "2. Introduce tu contraseña.\n" +
-                "3. Pulsa el icono del ojo para ver la contraseña.\n" +
-                "4. Si no recuerdas tu contraseña, pulsa 'Recuperar Contraseña'.\n" +
-                "5. Pulsa 'Iniciar Sesión' para acceder."
-        );
-        ayuda.showAndWait();
-    }
+		case ESTUDIANTE:
+			stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
+			break;
+
+		default:
+			mensajeLabel.setText("Perfil no reconocido.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+		}
+	}
+
+	@FXML
+	private void handleRecuperarPassword() {
+		System.out.println("Recuperar contraseña");
+	}
+
+	@FXML
+	private void mostrarAyuda() {
+		Alert ayuda = new Alert(Alert.AlertType.INFORMATION);
+		ayuda.setTitle("Ayuda - Inicio de Sesión");
+		ayuda.setHeaderText("¿Cómo iniciar sesión?");
+		ayuda.setContentText("1. Introduce tu usuario.\n"
+				+ "2. Introduce tu contraseña.\n"
+				+ "3. Pulsa el icono del ojo para ver la contraseña.\n"
+				+ "4. Si no recuerdas tu contraseña, pulsa 'Recuperar Contraseña'.\n"
+				+ "5. Pulsa 'Iniciar Sesión' para acceder.");
+		ayuda.showAndWait();
+	}
 }

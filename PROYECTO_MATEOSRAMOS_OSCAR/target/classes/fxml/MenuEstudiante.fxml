@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.oscar.proyecto.controller.ControladorMenuAdmin" fx:id="rootPane">
+            fx:controller="com.oscar.proyecto.controller.ControladorMenuEstudiante" fx:id="rootPane">
 
     <left>
         <VBox spacing="15" styleClass="sidebar">
@@ -16,8 +16,9 @@
                 <Insets top="20" right="10" bottom="20" left="10"/>
             </padding>
 
-            <Label text=" BIENVENIDO + Nombre Estudiante" styleClass="sidebar-title"/>
-
+       <Label fx:id="lblBienvenida" text="BIENVENIDO" styleClass="sidebar-title"/>
+       
+          
             <Button text="Ver informacion de la Formacion"  styleClass="sidebar-button"
                     onAction="#abrirGestionProfesores"/>
 

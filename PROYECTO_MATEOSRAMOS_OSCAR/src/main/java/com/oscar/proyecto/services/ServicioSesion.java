@@ -3,47 +3,63 @@ package com.oscar.proyecto.services;
 import org.springframework.stereotype.Service;
 
 import com.oscar.proyecto.modelo.Perfil;
+import com.oscar.proyecto.modelo.Persona;
 
 @Service
 public class ServicioSesion {
 
-	private String nombrePersonaActual;
-	private Perfil perfilActual;
+    private Persona usuarioActual;
 
-	public String getNombrePersonaActual() {
-		return nombrePersonaActual;
-	}
+    private String nombrePersonaActual;
+    private Perfil perfilActual;
 
-	public void setNombrePersonaActual(String nombrePersonaActual) {
-		this.nombrePersonaActual = nombrePersonaActual;
-	}
+   
+    public Persona getUsuarioActual() {
+        return usuarioActual;
+    }
 
-	public Perfil getPerfil() {
-		return perfilActual;
-	}
+    public void setUsuarioActual(Persona usuarioActual) {
+        this.usuarioActual = usuarioActual;
+        this.nombrePersonaActual = usuarioActual.getNombre(); // opcional
+        this.perfilActual = usuarioActual.getPerfil();        // opcional
+    }
 
-	public void setPerfil(Perfil perfilActual) {
-		this.perfilActual = perfilActual;
-	}
+   
+    public String getNombrePersonaActual() {
+        return nombrePersonaActual;
+    }
 
-	public void limpiarSesion() {
-		this.nombrePersonaActual = null;
-		this.perfilActual = null;
-	}
+    public void setNombrePersonaActual(String nombrePersonaActual) {
+        this.nombrePersonaActual = nombrePersonaActual;
+    }
 
-	public boolean isAdmin() {
-		return perfilActual == Perfil.ADMIN;
-	}
+    public Perfil getPerfil() {
+        return perfilActual;
+    }
 
-	public boolean isProfesor() {
-		return perfilActual == Perfil.PROFESOR;
-	}
+    public void setPerfil(Perfil perfilActual) {
+        this.perfilActual = perfilActual;
+    }
 
-	public boolean isTutor() {
-		return perfilActual == Perfil.TUTOR;
-	}
+    public void limpiarSesion() {
+        this.usuarioActual = null;
+        this.nombrePersonaActual = null;
+        this.perfilActual = null;
+    }
 
-	public boolean isEstudiante() {
-		return perfilActual == Perfil.ESTUDIANTE;
-	}
+    public boolean isAdmin() {
+        return perfilActual == Perfil.ADMIN;
+    }
+
+    public boolean isProfesor() {
+        return perfilActual == Perfil.PROFESOR;
+    }
+
+    public boolean isTutor() {
+        return perfilActual == Perfil.TUTOR;
+    }
+
+    public boolean isEstudiante() {
+        return perfilActual == Perfil.ESTUDIANTE;
+    }
 }

@@ -53,6 +53,12 @@ public class ControladorMenuAdmin {
 	private void abrirGestionTutores() {
 
 	}
+	
+	
+	@FXML
+	private void abrirGestionGrupos() {
+
+	}
 
 	@FXML
 	private void abrirGestionPersonas() {

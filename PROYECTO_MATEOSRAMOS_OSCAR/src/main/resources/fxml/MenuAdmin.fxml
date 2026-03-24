@@ -24,6 +24,10 @@
 
 			<Button text="Gestionar Cursos" styleClass="sidebar-button"
 				onAction="#abrirGestionCursos" />
+				
+				
+				<Button text="Gestionar Grupos" styleClass="sidebar-button"
+				onAction="#abrirGestionGrupos" />
 
 			<Button text="Gestionar Estudiantes"
 				styleClass="sidebar-button" onAction="#abrirGestionEstudiantes" />

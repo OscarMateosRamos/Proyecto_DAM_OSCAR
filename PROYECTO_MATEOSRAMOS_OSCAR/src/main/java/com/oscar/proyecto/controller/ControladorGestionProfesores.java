@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,11 +23,22 @@ import com.oscar.proyecto.services.ServicioProfesor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
 
 @Component
 public class ControladorGestionProfesores {
@@ -84,7 +96,6 @@ public class ControladorGestionProfesores {
         tablaProfesores.setItems(listaProfesores);
     }
 
-   
     @FXML
     private void añadirProfesor() {
 
@@ -102,11 +113,11 @@ public class ControladorGestionProfesores {
 
         ComboBox<Persona> comboPersona = new ComboBox<>();
         comboPersona.getItems().setAll(
-        	    personaServicio.listarPersonas()
-        	        .stream()
-        	        .filter(p -> p.getPerfil() == Perfil.PROFESOR)
-        	        .toList()
-        	);
+                personaServicio.listarPersonas()
+                        .stream()
+                        .filter(p -> p.getPerfil() == Perfil.PROFESOR)
+                        .toList()
+        );
 
         comboPersona.setPromptText("Selecciona persona");
 
@@ -130,8 +141,16 @@ public class ControladorGestionProfesores {
 
         DatePicker fechaIngreso = new DatePicker();
 
-        TextField horario = new TextField();
-        horario.setPromptText("HH:mm");
+        ComboBox<Integer> hora = new ComboBox<>();
+        hora.getItems().addAll(IntStream.range(8, 21).boxed().toList()); 
+        hora.setPromptText("Hora");
+
+        ComboBox<Integer> minuto = new ComboBox<>();
+        minuto.getItems().addAll(0, 15, 30, 45); 
+        minuto.setPromptText("Minuto");
+
+        HBox horarioBox = new HBox(10, hora, minuto);
+       
 
         grid.add(new Label("Persona:"), 0, 0);
         grid.add(comboPersona, 1, 0);
@@ -147,8 +166,8 @@ public class ControladorGestionProfesores {
         grid.add(aula, 1, 5);
         grid.add(new Label("Fecha ingreso:"), 0, 6);
         grid.add(fechaIngreso, 1, 6);
-        grid.add(new Label("Horario tutoria:"), 0, 7);
-        grid.add(horario, 1, 7);
+        grid.add(new Label("Horario tutoría:"), 0, 7);
+        grid.add(horarioBox, 1, 7);
         grid.add(coordinador, 1, 8);
 
         dialog.getDialogPane().setContent(grid);
@@ -165,8 +184,10 @@ public class ControladorGestionProfesores {
                 profesor.setAulaAsignada(aula.getText());
                 profesor.setEsCoordinador(coordinador.isSelected());
                 profesor.setFechaIngreso(fechaIngreso.getValue());
-                profesor.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), LocalTime.parse(horario.getText())));
 
+                LocalTime horaTutoria = LocalTime.of(hora.getValue(), minuto.getValue());
+                profesor.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), horaTutoria));
+               
                 return profesor;
             }
             return null;

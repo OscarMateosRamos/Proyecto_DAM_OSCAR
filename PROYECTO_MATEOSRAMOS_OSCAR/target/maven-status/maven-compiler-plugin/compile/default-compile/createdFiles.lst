@@ -2,6 +2,7 @@ com\oscar\proyecto\controller\ControladorLogin$1.class
 com\oscar\proyecto\repositorios\IncidenciaRepository.class
 com\oscar\proyecto\modelo\TutorEmpresa.class
 com\oscar\proyecto\modelo\Justificada.class
+com\oscar\proyecto\controller\ControladorMenuProfesor.class
 com\oscar\proyecto\repositorios\TutorEmpresaRepository.class
 com\oscar\proyecto\services\ServicioGrupo.class
 com\oscar\proyecto\modelo\Ciclo.class
@@ -20,6 +21,7 @@ com\oscar\proyecto\services\ServicioFormacionEmpresa.class
 com\oscar\proyecto\services\ServicioCurso.class
 com\oscar\proyecto\controller\ProfesorCrearController.class
 com\oscar\proyecto\repositorios\PersonaRepository.class
+com\oscar\proyecto\controller\ControladorMenuTutor.class
 com\oscar\proyecto\modelo\Periodo.class
 com\oscar\proyecto\repositorios\GrupoRepository.class
 com\oscar\proyecto\repositorios\CursoRepository.class

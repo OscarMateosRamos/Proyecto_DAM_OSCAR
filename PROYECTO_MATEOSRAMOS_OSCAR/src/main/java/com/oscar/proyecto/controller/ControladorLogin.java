@@ -161,6 +161,7 @@ public class ControladorLogin implements Initializable {
 			break;
 
 		case PROFESOR:
+			stagemanager.switchScene(FxmlView.MENUPROFESOR);
 			break;
 
 		case TUTOR:

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.oscar.proyecto.controller.ControladorMenuTutor"
+	fx:id="rootPane">
+
+	<left>
+		<VBox spacing="15" styleClass="sidebar">
+			<padding>
+				<Insets top="20" right="10" bottom="20" left="10" />
+			</padding>
+
+			<Label fx:id="lblBienvenida" text="BIENVENIDO"
+				styleClass="sidebar-title" />
+
+			<Button text="Calificar Estudiante"
+				styleClass="sidebar-button" onAction="#calificarestudiante" />
+
+			<Button text="Registrar faltas " styleClass="sidebar-button"
+				onAction="#registrarfaltas" />
+
+
+			<Button text="Consultar datos del Estudiante "
+				styleClass="sidebar-button" onAction="#verdatosestudiante" />
+
+
+
+
+
+			<Separator />
+
+			<Button text="Cerrar Sesión" styleClass="logout-button"
+				onAction="#cerrarSesion" />
+		</VBox>
+	</left>
+
+
+	<center>
+		<VBox alignment="CENTER" spacing="20" styleClass="main-content">
+			<Label text="Panel de  Profesor" styleClass="main-title" />
+
+			<ImageView fitHeight="180" preserveRatio="true">
+				<image>
+					<Image url="@/images/LogoColegio.png" />
+				</image>
+			</ImageView>
+
+			<Label text="Seleccione una opción del menú lateral"
+				styleClass="main-subtitle" />
+		</VBox>
+	</center>
+
+</BorderPane>

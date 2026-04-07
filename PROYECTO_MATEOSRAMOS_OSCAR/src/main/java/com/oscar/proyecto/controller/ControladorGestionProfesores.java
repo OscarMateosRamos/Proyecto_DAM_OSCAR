@@ -20,6 +20,7 @@ import com.oscar.proyecto.modelo.Profesor;
 import com.oscar.proyecto.services.ServicioPersona;
 import com.oscar.proyecto.services.ServicioProfesor;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,307 +44,308 @@ import javafx.scene.layout.HBox;
 @Component
 public class ControladorGestionProfesores {
 
-    @Autowired
-    private StageManager stageManager;
+	@Autowired
+	private StageManager stageManager;
 
-    @Autowired
-    private ServicioProfesor profesorServicio;
+	@Autowired
+	private ServicioProfesor profesorServicio;
 
-    @Autowired
-    private ServicioPersona personaServicio;
+	@Autowired
+	private ServicioPersona personaServicio;
 
-    @FXML
-    private TableView<Profesor> tablaProfesores;
+	@FXML
+	private TableView<Profesor> tablaProfesores;
 
-    @FXML
-    private TableColumn<Profesor, String> colNombre;
+	@FXML
+	private TableColumn<Profesor, String> colNombre;
 
-    @FXML
-    private TableColumn<Profesor, String> colApellidos;
+	@FXML
+	private TableColumn<Profesor, String> colApellidos;
 
-    @FXML
-    private TableColumn<Profesor, String> colCodigo;
+	@FXML
+	private TableColumn<Profesor, String> colCodigo;
 
-    @FXML
-    private TableColumn<Profesor, String> colDepartamento;
+	@FXML
+	private TableColumn<Profesor, String> colDepartamento;
 
-    @FXML
-    private TableColumn<Profesor, String> colEmail;
+	@FXML
+	private TableColumn<Profesor, String> colEmail;
 
-    private ObservableList<Profesor> listaProfesores;
+	private ObservableList<Profesor> listaProfesores;
 
-    @FXML
-    private BorderPane rootPane;
+	@FXML
+	private BorderPane rootPane;
 
-    @FXML
-    public void initialize() {
-        configurarColumnas();
-        cargarProfesores();
-        cargarEstilos();
-    }
+	@FXML
+	public void initialize() {
+		configurarColumnas();
+		cargarProfesores();
+		cargarEstilos();
+	}
 
-    private void configurarColumnas() {
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
-        colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoProfesor"));
-        colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-    }
+	private void configurarColumnas() {
+	    colNombre.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getNombre())
+	    );
+	    colApellidos.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getApellidos())
+	    );
+	    colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoProfesor"));
+	    colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento"));
+	    colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+	}
 
-    private void cargarProfesores() {
-        List<Profesor> profesores = profesorServicio.listarProfesores();
-        listaProfesores = FXCollections.observableArrayList(profesores);
-        tablaProfesores.setItems(listaProfesores);
-    }
+	private void cargarProfesores() {
+		List<Profesor> profesores = profesorServicio.listarProfesores();
+		listaProfesores = FXCollections.observableArrayList(profesores);
+		tablaProfesores.setItems(listaProfesores);
+	}
 
-    @FXML
-    private void añadirProfesor() {
+	@FXML
+	private void añadirProfesor() {
 
-        Dialog<Profesor> dialog = new Dialog<>();
-        dialog.setTitle("Añadir Profesor");
-        dialog.setHeaderText("Introduce los datos del nuevo profesor:");
+		Dialog<Profesor> dialog = new Dialog<>();
+		dialog.setTitle("Añadir Profesor");
+		dialog.setHeaderText("Introduce los datos del nuevo profesor:");
 
-        ButtonType guardarButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(guardarButtonType, ButtonType.CANCEL);
+		ButtonType guardarButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(guardarButtonType, ButtonType.CANCEL);
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
+		GridPane grid = new GridPane();
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(20, 150, 10, 10));
 
-        ComboBox<Persona> comboPersona = new ComboBox<>();
-        comboPersona.getItems().setAll(
-                personaServicio.listarPersonas()
-                        .stream()
-                        .filter(p -> p.getPerfil() == Perfil.PROFESOR)
-                        .toList()
-        );
+		ComboBox<Persona> comboPersona = new ComboBox<>();
+		comboPersona.getItems().setAll(
+				personaServicio.listarPersonas().stream().filter(p -> p.getPerfil() == Perfil.PROFESOR).toList());
 
-        comboPersona.setPromptText("Selecciona persona");
+		comboPersona.setPromptText("Selecciona persona");
 
-        TextField codigo = new TextField();
-        codigo.setPromptText("Código profesor");
+		TextField codigo = new TextField();
+		codigo.setPromptText("Código profesor");
 
-        TextField departamento = new TextField();
-        departamento.setPromptText("Departamento");
+		TextField departamento = new TextField();
+		departamento.setPromptText("Departamento");
 
-        TextField email = new TextField();
-        email.setPromptText("Email");
+		TextField email = new TextField();
+		email.setPromptText("Email");
 
-        ComboBox<Especialidad> especialidad = new ComboBox<>();
-        especialidad.getItems().setAll(Especialidad.values());
-        especialidad.setPromptText("Especialidad");
+		ComboBox<Especialidad> especialidad = new ComboBox<>();
+		especialidad.getItems().setAll(Especialidad.values());
+		especialidad.setPromptText("Especialidad");
 
-        TextField aula = new TextField();
-        aula.setPromptText("Aula asignada");
+		TextField aula = new TextField();
+		aula.setPromptText("Aula asignada");
 
-        CheckBox coordinador = new CheckBox("Es coordinador");
+		CheckBox coordinador = new CheckBox("Es coordinador");
 
-        DatePicker fechaIngreso = new DatePicker();
+		DatePicker fechaIngreso = new DatePicker();
 
-        ComboBox<Integer> hora = new ComboBox<>();
-        hora.getItems().addAll(IntStream.range(8, 21).boxed().toList()); 
-        hora.setPromptText("Hora");
+		ComboBox<Integer> hora = new ComboBox<>();
+		hora.getItems().addAll(IntStream.range(8, 21).boxed().toList());
+		hora.setPromptText("Hora");
 
-        ComboBox<Integer> minuto = new ComboBox<>();
-        minuto.getItems().addAll(0, 15, 30, 45); 
-        minuto.setPromptText("Minuto");
+		ComboBox<Integer> minuto = new ComboBox<>();
+		minuto.getItems().addAll(0, 15, 30, 45);
+		minuto.setPromptText("Minuto");
 
-        HBox horarioBox = new HBox(10, hora, minuto);
-       
+		HBox horarioBox = new HBox(10, hora, minuto);
 
-        grid.add(new Label("Persona:"), 0, 0);
-        grid.add(comboPersona, 1, 0);
-        grid.add(new Label("Código:"), 0, 1);
-        grid.add(codigo, 1, 1);
-        grid.add(new Label("Departamento:"), 0, 2);
-        grid.add(departamento, 1, 2);
-        grid.add(new Label("Email:"), 0, 3);
-        grid.add(email, 1, 3);
-        grid.add(new Label("Especialidad:"), 0, 4);
-        grid.add(especialidad, 1, 4);
-        grid.add(new Label("Aula:"), 0, 5);
-        grid.add(aula, 1, 5);
-        grid.add(new Label("Fecha ingreso:"), 0, 6);
-        grid.add(fechaIngreso, 1, 6);
-        grid.add(new Label("Horario tutoría:"), 0, 7);
-        grid.add(horarioBox, 1, 7);
-        grid.add(coordinador, 1, 8);
+		grid.add(new Label("Persona:"), 0, 0);
+		grid.add(comboPersona, 1, 0);
+		grid.add(new Label("Código:"), 0, 1);
+		grid.add(codigo, 1, 1);
+		grid.add(new Label("Departamento:"), 0, 2);
+		grid.add(departamento, 1, 2);
+		grid.add(new Label("Email:"), 0, 3);
+		grid.add(email, 1, 3);
+		grid.add(new Label("Especialidad:"), 0, 4);
+		grid.add(especialidad, 1, 4);
+		grid.add(new Label("Aula:"), 0, 5);
+		grid.add(aula, 1, 5);
+		grid.add(new Label("Fecha ingreso:"), 0, 6);
+		grid.add(fechaIngreso, 1, 6);
+		grid.add(new Label("Horario tutoría:"), 0, 7);
+		grid.add(horarioBox, 1, 7);
+		grid.add(coordinador, 1, 8);
 
-        dialog.getDialogPane().setContent(grid);
+		dialog.getDialogPane().setContent(grid);
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == guardarButtonType) {
+		dialog.setResultConverter(dialogButton -> {
+			if (dialogButton == guardarButtonType) {
 
-                Profesor profesor = new Profesor();
-                profesor.setIdPersona(comboPersona.getValue().getIdPersona());
-                profesor.setCodigoProfesor(codigo.getText());
-                profesor.setDepartamento(departamento.getText());
-                profesor.setEmail(email.getText());
-                profesor.setEspecialidad(especialidad.getValue());
-                profesor.setAulaAsignada(aula.getText());
-                profesor.setEsCoordinador(coordinador.isSelected());
-                profesor.setFechaIngreso(fechaIngreso.getValue());
+				Persona p = comboPersona.getValue();
 
-                LocalTime horaTutoria = LocalTime.of(hora.getValue(), minuto.getValue());
-                profesor.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), horaTutoria));
-               
-                return profesor;
-            }
-            return null;
-        });
+				Profesor profesor = new Profesor();
 
-        Optional<Profesor> result = dialog.showAndWait();
+				profesor.setIdPersona(p.getIdPersona());
 
-        result.ifPresent(profesor -> {
-            profesorServicio.guardarProfesor(profesor);
-            listaProfesores.add(profesor);
-            tablaProfesores.refresh();
-        });
-    }
+				profesor.setCodigoProfesor(codigo.getText());
+				profesor.setDepartamento(departamento.getText());
+				profesor.setEmail(email.getText());
+				profesor.setEspecialidad(especialidad.getValue());
+				profesor.setAulaAsignada(aula.getText());
+				profesor.setEsCoordinador(coordinador.isSelected());
+				profesor.setFechaIngreso(fechaIngreso.getValue());
 
-   
-    @FXML
-    private void editarProfesor() {
-        Profesor seleccionado = tablaProfesores.getSelectionModel().getSelectedItem();
+				LocalTime horaTutoria = LocalTime.of(hora.getValue(), minuto.getValue());
+				profesor.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), horaTutoria));
 
-        if (seleccionado == null) {
-            mostrarError("Selecciona un profesor", "Debes seleccionar un profesor para editarlo.");
-            return;
-        }
+				return profesor;
+			}
+			return null;
+		});
 
-        Dialog<Profesor> dialog = new Dialog<>();
-        dialog.setTitle("Editar Profesor");
-        dialog.setHeaderText("Modifica los datos del profesor:");
+		Optional<Profesor> result = dialog.showAndWait();
 
-        ButtonType guardarButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(guardarButtonType, ButtonType.CANCEL);
+		result.ifPresent(profesor -> {
+			profesorServicio.guardarProfesor(profesor);
+			listaProfesores.add(profesor);
+			tablaProfesores.refresh();
+		});
+	}
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
+	@FXML
+	private void editarProfesor() {
+		Profesor seleccionado = tablaProfesores.getSelectionModel().getSelectedItem();
 
-        TextField codigo = new TextField(seleccionado.getCodigoProfesor());
-        TextField departamento = new TextField(seleccionado.getDepartamento());
-        TextField email = new TextField(seleccionado.getEmail());
-        ComboBox<Especialidad> especialidad = new ComboBox<>();
-        especialidad.getItems().setAll(Especialidad.values());
-        especialidad.setValue(seleccionado.getEspecialidad());
-        TextField aula = new TextField(seleccionado.getAulaAsignada());
-        CheckBox coordinador = new CheckBox("Es coordinador");
-        coordinador.setSelected(seleccionado.isEsCoordinador());
-        DatePicker fechaIngreso = new DatePicker(seleccionado.getFechaIngreso());
-        TextField horario = new TextField(
-        	    seleccionado.getHorarioTutoria() != null
-        	        ? seleccionado.getHorarioTutoria().toLocalTime().toString()
-        	        : ""
-        	);
+		if (seleccionado == null) {
+			mostrarError("Selecciona un profesor", "Debes seleccionar un profesor para editarlo.");
+			return;
+		}
 
-        grid.add(new Label("Código:"), 0, 0);
-        grid.add(codigo, 1, 0);
-        grid.add(new Label("Departamento:"), 0, 1);
-        grid.add(departamento, 1, 1);
-        grid.add(new Label("Email:"), 0, 2);
-        grid.add(email, 1, 2);
-        grid.add(new Label("Especialidad:"), 0, 3);
-        grid.add(especialidad, 1, 3);
-        grid.add(new Label("Aula:"), 0, 4);
-        grid.add(aula, 1, 4);
-        grid.add(new Label("Fecha ingreso:"), 0, 5);
-        grid.add(fechaIngreso, 1, 5);
-        grid.add(new Label("Horario tutoria:"), 0, 6);
-        grid.add(horario, 1, 6);
-        grid.add(coordinador, 1, 7);
+		Dialog<Profesor> dialog = new Dialog<>();
+		dialog.setTitle("Editar Profesor");
+		dialog.setHeaderText("Modifica los datos del profesor:");
 
-        dialog.getDialogPane().setContent(grid);
+		ButtonType guardarButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(guardarButtonType, ButtonType.CANCEL);
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == guardarButtonType) {
+		GridPane grid = new GridPane();
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(20, 150, 10, 10));
 
-                seleccionado.setCodigoProfesor(codigo.getText());
-                seleccionado.setDepartamento(departamento.getText());
-                seleccionado.setEmail(email.getText());
-                seleccionado.setEspecialidad(especialidad.getValue());
-                seleccionado.setAulaAsignada(aula.getText());
-                seleccionado.setEsCoordinador(coordinador.isSelected());
-                seleccionado.setFechaIngreso(fechaIngreso.getValue());
-                seleccionado.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), LocalTime.parse(horario.getText())));
+		TextField nombre = new TextField(seleccionado.getNombre());
+		TextField apellidos = new TextField(seleccionado.getApellidos());
 
-                profesorServicio.guardarProfesor(seleccionado);
-                return seleccionado;
-            }
-            return null;
-        });
+		TextField codigo = new TextField(seleccionado.getCodigoProfesor());
+		TextField departamento = new TextField(seleccionado.getDepartamento());
+		TextField email = new TextField(seleccionado.getEmail());
+		ComboBox<Especialidad> especialidad = new ComboBox<>();
+		especialidad.getItems().setAll(Especialidad.values());
+		especialidad.setValue(seleccionado.getEspecialidad());
+		TextField aula = new TextField(seleccionado.getAulaAsignada());
+		CheckBox coordinador = new CheckBox("Es coordinador");
+		coordinador.setSelected(seleccionado.isEsCoordinador());
+		DatePicker fechaIngreso = new DatePicker(seleccionado.getFechaIngreso());
+		TextField horario = new TextField(
+				seleccionado.getHorarioTutoria() != null ? seleccionado.getHorarioTutoria().toLocalTime().toString()
+						: "");
 
-        dialog.showAndWait();
-        tablaProfesores.refresh();
-    }
+		grid.add(new Label("Nombre:"), 0, 0);
+		grid.add(nombre, 1, 0);
 
-   
-    @FXML
-    private void eliminarProfesor() {
-        Profesor seleccionado = tablaProfesores.getSelectionModel().getSelectedItem();
+		grid.add(new Label("Apellidos:"), 0, 1);
+		grid.add(apellidos, 1, 1);
 
-        if (seleccionado == null) {
-            mostrarError("Selecciona un profesor", "Debes seleccionar un profesor para eliminarlo.");
-            return;
-        }
+		grid.add(new Label("Código:"), 0, 2);
+		grid.add(codigo, 1, 2);
+		grid.add(new Label("Departamento:"), 0, 3);
+		grid.add(departamento, 1, 3);
+		grid.add(new Label("Email:"), 0, 4);
+		grid.add(email, 1, 4);
+		grid.add(new Label("Especialidad:"), 0, 5);
+		grid.add(especialidad, 1, 5);
+		grid.add(new Label("Aula:"), 0, 6);
+		grid.add(aula, 1, 6);
+		grid.add(new Label("Fecha ingreso:"), 0, 7);
+		grid.add(fechaIngreso, 1, 7);
+		grid.add(new Label("Horario tutoria:"), 0, 8);
+		grid.add(horario, 1, 8);
+		grid.add(coordinador, 1, 9);
 
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle("Confirmar eliminación");
-        confirmacion.setHeaderText("¿Seguro que deseas eliminar al profesor?");
-        confirmacion.setContentText(seleccionado.getNombre() + " " + seleccionado.getApellidos());
+		dialog.getDialogPane().setContent(grid);
 
-        Optional<ButtonType> result = confirmacion.showAndWait();
+		dialog.setResultConverter(dialogButton -> {
+			if (dialogButton == guardarButtonType) {
 
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                profesorServicio.eliminarProfesor(seleccionado.getIdPersona());
-                listaProfesores.remove(seleccionado);
-                tablaProfesores.refresh();
+				seleccionado.setNombre(nombre.getText());
+				seleccionado.setApellidos(apellidos.getText());
 
-            } catch (IllegalStateException e) {
-                mostrarError("No se puede eliminar", e.getMessage());
+				seleccionado.setCodigoProfesor(codigo.getText());
+				seleccionado.setDepartamento(departamento.getText());
+				seleccionado.setEmail(email.getText());
+				seleccionado.setEspecialidad(especialidad.getValue());
+				seleccionado.setAulaAsignada(aula.getText());
+				seleccionado.setEsCoordinador(coordinador.isSelected());
+				seleccionado.setFechaIngreso(fechaIngreso.getValue());
+				seleccionado.setHorarioTutoria(LocalDateTime.of(LocalDate.now(), LocalTime.parse(horario.getText())));
 
-            } catch (Exception e) {
-                mostrarError("Error inesperado",
-                        "No se pudo eliminar el profesor.\nDetalles: " + e.getMessage());
-            }
-        }
-    }
+				profesorServicio.guardarProfesor(seleccionado);
+				return seleccionado;
+			}
+			return null;
+		});
 
+		dialog.showAndWait();
+		tablaProfesores.refresh();
+	}
 
-    @FXML
-    private void volverMenuAdmin() {
-        stageManager.switchScene(FxmlView.MENUADMIN);
-    }
+	@FXML
+	private void eliminarProfesor() {
+		Profesor seleccionado = tablaProfesores.getSelectionModel().getSelectedItem();
 
-    private void mostrarError(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
+		if (seleccionado == null) {
+			mostrarError("Selecciona un profesor", "Debes seleccionar un profesor para eliminarlo.");
+			return;
+		}
 
-    private void mostrarInfo(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
+		Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+		confirmacion.setTitle("Confirmar eliminación");
+		confirmacion.setHeaderText("¿Seguro que deseas eliminar al profesor?");
+		confirmacion.setContentText(seleccionado.getNombre() + " " + seleccionado.getApellidos());
 
-    private void cargarEstilos() {
-        try {
-            String cssPath = "/styles/GestionProfesores.css";
-            URL cssUrl = getClass().getResource(cssPath);
-            if (cssUrl != null) {
-                rootPane.getStylesheets().add(cssUrl.toExternalForm());
-            }
-        } catch (Exception e) {
-            System.err.println("Error al cargar el CSS: " + e.getMessage());
-        }
-    }
+		Optional<ButtonType> result = confirmacion.showAndWait();
+
+		if (result.isPresent() && result.get() == ButtonType.OK) {
+			try {
+				profesorServicio.eliminarProfesor(seleccionado.getIdPersona());
+				listaProfesores.remove(seleccionado);
+				tablaProfesores.refresh();
+
+			} catch (IllegalStateException e) {
+				mostrarError("No se puede eliminar", e.getMessage());
+
+			} catch (Exception e) {
+				mostrarError("Error inesperado", "No se pudo eliminar el profesor.\nDetalles: " + e.getMessage());
+			}
+		}
+	}
+
+	@FXML
+	private void volverMenuAdmin() {
+		stageManager.switchScene(FxmlView.MENUADMIN);
+	}
+
+	private void mostrarError(String titulo, String mensaje) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle(titulo);
+		alert.setHeaderText(null);
+		alert.setContentText(mensaje);
+		alert.showAndWait();
+	}
+
+	private void cargarEstilos() {
+		try {
+			String cssPath = "/styles/GestionProfesores.css";
+			URL cssUrl = getClass().getResource(cssPath);
+			if (cssUrl != null) {
+				rootPane.getStylesheets().add(cssUrl.toExternalForm());
+			}
+		} catch (Exception e) {
+			System.err.println("Error al cargar el CSS: " + e.getMessage());
+		}
+	}
 }

@@ -46,6 +46,7 @@ com\oscar\proyecto\controller\ControladorGestionProfesores.class
 com\oscar\proyecto\repositorios\EstudianteRepository.class
 com\oscar\proyecto\services\PasswordEncoderService.class
 com\oscar\proyecto\config\StageManager.class
+com\oscar\proyecto\controller\ControladorMenuEstudiante.class
 com\oscar\proyecto\repositorios\EvaluacionRepository.class
 com\oscar\proyecto\config\FxmlView.class
 com\oscar\proyecto\modelo\Grupo.class

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.oscar.proyecto.config.FxmlView;
@@ -126,56 +127,53 @@ public class ControladorLogin implements Initializable {
 	@FXML
 	private void handleIniciarSesion(javafx.event.ActionEvent event) {
 
-		String usuario = usuarioField.getText();
-		String password = passwordField.isVisible() ? passwordField.getText()
-				: passwordVisibleField.getText();
+	    String usuario = usuarioField.getText();
+	    String password = passwordField.isVisible() ? passwordField.getText()
+	            : passwordVisibleField.getText();
 
-		if (usuario.isEmpty() || password.isEmpty()) {
-			mensajeLabel.setText("Usuario y contraseña son obligatorios.");
-			mensajeLabel.setStyle("-fx-text-fill: red;");
-			return;
-		}
+	    if (usuario.isEmpty() || password.isEmpty()) {
+	        mensajeLabel.setText("Usuario y contraseña son obligatorios.");
+	        mensajeLabel.setStyle("-fx-text-fill: red;");
+	        return;
+	    }
 
-		Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
+	    Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
 
-		if (persona == null) {
-			mensajeLabel.setText("Usuario no encontrado.");
-			mensajeLabel.setStyle("-fx-text-fill: red;");
-			return;
-		}
+	    if (persona == null) {
+	        mensajeLabel.setText("Usuario no encontrado.");
+	        mensajeLabel.setStyle("-fx-text-fill: red;");
+	        return;
+	    }
 
-		if (!persona.getContraseña().equals(password)) {
-			mensajeLabel.setText("Contraseña incorrecta.");
-			mensajeLabel.setStyle("-fx-text-fill: red;");
-			return;
-		}
+	    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-		mensajeLabel.setText("Inicio de sesión correcto.");
-		mensajeLabel.setStyle("-fx-text-fill: green;");
+	    if (!encoder.matches(password, persona.getContraseña())) {
+	        mensajeLabel.setText("Contraseña incorrecta.");
+	        mensajeLabel.setStyle("-fx-text-fill: red;");
+	        return;
+	    }
 
-		sesionServicio.setUsuarioActual(persona);
+	    mensajeLabel.setText("Inicio de sesión correcto.");
+	    mensajeLabel.setStyle("-fx-text-fill: green;");
 
-		switch (persona.getPerfil()) {
-		case ADMIN:
-			stagemanager.switchScene(FxmlView.MENUADMIN);
-			break;
+	    sesionServicio.setUsuarioActual(persona);
 
-		case PROFESOR:
-			stagemanager.switchScene(FxmlView.MENUPROFESOR);
-			break;
-
-		case TUTOR:
-			break;
-
-		case ESTUDIANTE:
-			stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
-			break;
-
-		default:
-			mensajeLabel.setText("Perfil no reconocido.");
-			mensajeLabel.setStyle("-fx-text-fill: red;");
-		}
+	    switch (persona.getPerfil()) {
+	        case ADMIN:
+	            stagemanager.switchScene(FxmlView.MENUADMIN);
+	            break;
+	        case PROFESOR:
+	            stagemanager.switchScene(FxmlView.MENUPROFESOR);
+	            break;
+	        case ESTUDIANTE:
+	            stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
+	            break;
+	        default:
+	            mensajeLabel.setText("Perfil no reconocido.");
+	            mensajeLabel.setStyle("-fx-text-fill: red;");
+	    }
 	}
+
 
 	@FXML
 	private void handleRecuperarPassword() {

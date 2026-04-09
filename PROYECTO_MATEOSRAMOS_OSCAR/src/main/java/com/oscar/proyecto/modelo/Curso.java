@@ -1,7 +1,9 @@
 package com.oscar.proyecto.modelo;
 
 import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +32,7 @@ public class Curso {
     @OneToMany(mappedBy = "curso")
     private List<Grupo> grupos;
 
-    @ManyToMany(mappedBy = "cursosAsignados")
+    @ManyToMany(mappedBy = "cursosAsignados", fetch = FetchType.EAGER)
     private List<Profesor> profesores;
 
     public Curso() {

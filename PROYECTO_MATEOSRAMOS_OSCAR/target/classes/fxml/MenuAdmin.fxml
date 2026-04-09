@@ -28,6 +28,10 @@
 				
 				<Button text="Gestionar Grupos" styleClass="sidebar-button"
 				onAction="#abrirGestionGrupos" />
+				
+				
+				<Button text="Gestionar Ciclos" styleClass="sidebar-button"
+				onAction="#abrirGestionCiclos" />
 
 			<Button text="Gestionar Estudiantes"
 				styleClass="sidebar-button" onAction="#abrirGestionEstudiantes" />

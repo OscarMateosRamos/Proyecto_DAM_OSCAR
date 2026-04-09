@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorGestionGrupos"
+            fx:id="rootPane"
+            prefWidth="900" prefHeight="600">
+
+   
+    <top>
+        <HBox spacing="10" styleClass="header">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Gestión de Grupos" styleClass="header-title"/>
+        </HBox>
+    </top>
+
+  
+    <center>
+        <VBox spacing="15" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+           
+            <TableView fx:id="tablaGrupos" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colCurso" text="Curso" prefWidth="250"/>
+                    <TableColumn fx:id="colNombre" text="Nombre del Grupo" prefWidth="250"/>
+                    <TableColumn fx:id="colEstudiantes" text="Estudiantes" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+          
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Añadir Grupo" styleClass="action-button" onAction="#añadirGrupo"/>
+                <Button text="Editar Grupo" styleClass="action-button" onAction="#editarGrupo"/>
+                <Button text="Eliminar Grupo" styleClass="delete-button" onAction="#eliminarGrupo"/>
+                <Button text="Volver" styleClass="back-button" onAction="#volverMenuAdmin"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

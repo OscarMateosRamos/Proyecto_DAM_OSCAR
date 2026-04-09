@@ -41,7 +41,7 @@ public class Empresa {
         this.formaciones = formaciones;
     }
 
-    // Getters y setters
+    
     public Long getIdEmpresa() {
         return idEmpresa;
     }

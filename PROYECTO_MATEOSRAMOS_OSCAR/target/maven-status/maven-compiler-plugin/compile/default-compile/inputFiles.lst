@@ -7,6 +7,7 @@ C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\TutorEmpresa.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioEstudiante.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioPersona.java
+C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionGrupos.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionProfesores.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorBienvenida.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorMenuAdmin.java
@@ -24,6 +25,8 @@ C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioIncidencia.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioFalta.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\ServicioSesion.java
+C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionEmpresas.java
+C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionTutoresEmpresa.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\ProfesorRepository.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\AsistenciaRepository.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorMenuProfesor.java
@@ -35,6 +38,8 @@ C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\services\PasswordEncoderService.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\EmpresaRepository.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\modelo\Incidencia.java
+C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionCiclos.java
+C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorGestionCursos.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\CicloRepository.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\controller\ControladorLogin.java
 C:\Users\2damv15\git\Proyecto_DAM_OSCAR\PROYECTO_MATEOSRAMOS_OSCAR\src\main\java\com\oscar\proyecto\repositorios\IncidenciaRepository.java

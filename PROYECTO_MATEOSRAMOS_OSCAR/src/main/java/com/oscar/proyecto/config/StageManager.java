@@ -31,6 +31,8 @@ public class StageManager {
             Scene scene = new Scene(root);
             primaryStage.setTitle(view.getTitle());
             primaryStage.setScene(scene);
+            primaryStage.setWidth(900);
+            primaryStage.setHeight(900);
             primaryStage.show();
            
         } catch (IOException e) {

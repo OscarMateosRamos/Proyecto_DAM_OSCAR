@@ -36,7 +36,7 @@ public class ControladorMenuAdmin {
 
 	@FXML
 	private void abrirGestionCursos() {
-
+		stageManager.switchScene(FxmlView.GESTIONCURSOS);
 	}
 
 	@FXML
@@ -46,18 +46,25 @@ public class ControladorMenuAdmin {
 
 	@FXML
 	private void abrirGestionEmpresas() {
+		stageManager.switchScene(FxmlView.GESTIONEMPRESAS);
 
 	}
 
 	@FXML
 	private void abrirGestionTutores() {
 
+		stageManager.switchScene(FxmlView.GESTIONTUTORESEMPRESA);
+
 	}
-	
-	
+
 	@FXML
 	private void abrirGestionGrupos() {
+		stageManager.switchScene(FxmlView.GESTIONGRUPOS);
+	}
 
+	@FXML
+	private void abrirGestionCiclos() {
+		stageManager.switchScene(FxmlView.GESTIONCICLOS);
 	}
 
 	@FXML

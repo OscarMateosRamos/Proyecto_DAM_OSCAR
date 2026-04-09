@@ -57,12 +57,6 @@ public class ControladorGestionProfesores {
 	private TableView<Profesor> tablaProfesores;
 
 	@FXML
-	private TableColumn<Profesor, String> colNombre;
-
-	@FXML
-	private TableColumn<Profesor, String> colApellidos;
-
-	@FXML
 	private TableColumn<Profesor, String> colCodigo;
 
 	@FXML
@@ -84,15 +78,9 @@ public class ControladorGestionProfesores {
 	}
 
 	private void configurarColumnas() {
-	    colNombre.setCellValueFactory(cellData ->
-	        new SimpleStringProperty(cellData.getValue().getNombre())
-	    );
-	    colApellidos.setCellValueFactory(cellData ->
-	        new SimpleStringProperty(cellData.getValue().getApellidos())
-	    );
-	    colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoProfesor"));
-	    colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento"));
-	    colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoProfesor"));
+		colDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento"));
+		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 	}
 
 	private void cargarProfesores() {

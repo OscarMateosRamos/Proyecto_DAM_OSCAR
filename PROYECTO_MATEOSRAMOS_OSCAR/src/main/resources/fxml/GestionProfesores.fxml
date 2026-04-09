@@ -28,8 +28,6 @@
            
             <TableView fx:id="tablaProfesores" prefHeight="400">
                 <columns>
-                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
-                    <TableColumn fx:id="colApellidos" text="Apellidos" prefWidth="200"/>
                     <TableColumn fx:id="colCodigo" text="Código" prefWidth="120"/>
                     <TableColumn fx:id="colDepartamento" text="Departamento" prefWidth="150"/>
                     <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>

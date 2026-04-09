@@ -16,10 +16,12 @@ import org.springframework.stereotype.Component;
 
 import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
+import com.oscar.proyecto.modelo.Curso;
 import com.oscar.proyecto.modelo.Estudiante;
 import com.oscar.proyecto.modelo.Grupo;
 import com.oscar.proyecto.modelo.Perfil;
 import com.oscar.proyecto.modelo.Persona;
+import com.oscar.proyecto.services.ServicioCurso;
 import com.oscar.proyecto.services.ServicioEstudiante;
 import com.oscar.proyecto.services.ServicioGrupo;
 import com.oscar.proyecto.services.ServicioPersona;
@@ -54,6 +56,9 @@ public class ControladorGestionEstudiantes {
 
     @Autowired
     private ServicioGrupo grupoServicio;
+
+    @Autowired
+    private ServicioCurso cursoServicio;
 
     @FXML
     private TableView<Estudiante> tablaEstudiantes;
@@ -117,8 +122,6 @@ public class ControladorGestionEstudiantes {
         tablaEstudiantes.setItems(listaEstudiantes);
     }
 
-  
-
     private boolean validarEmail(String email) {
         return email != null &&
                Pattern.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", email);
@@ -126,7 +129,7 @@ public class ControladorGestionEstudiantes {
 
     private boolean validarTelefono(String telefono) {
         return telefono != null &&
-               Pattern.matches("^[0-9]{9}$", telefono);
+               Pattern.matches("^[6789][0-9]{8}$", telefono);
     }
 
     private boolean validarDni(String dni) {
@@ -134,7 +137,7 @@ public class ControladorGestionEstudiantes {
                Pattern.matches("^[0-9]{8}[A-Za-z]$", dni);
     }
 
-
+    
     @FXML
     private void añadirEstudiante() {
 
@@ -172,8 +175,9 @@ public class ControladorGestionEstudiantes {
 
         DatePicker fechaNac = new DatePicker();
 
-        TextField curso = new TextField();
-        curso.setPromptText("Curso");
+        ComboBox<Curso> comboCurso = new ComboBox<>();
+        comboCurso.getItems().setAll(cursoServicio.listarCursos());
+        comboCurso.setPromptText("Selecciona curso");
 
         ComboBox<Grupo> comboGrupo = new ComboBox<>();
         comboGrupo.getItems().setAll(grupoServicio.listarGrupos());
@@ -195,7 +199,7 @@ public class ControladorGestionEstudiantes {
         grid.add(new Label("Fecha nacimiento:"), 0, 5);
         grid.add(fechaNac, 1, 5);
         grid.add(new Label("Curso:"), 0, 6);
-        grid.add(curso, 1, 6);
+        grid.add(comboCurso, 1, 6);
         grid.add(new Label("Grupo:"), 0, 7);
         grid.add(comboGrupo, 1, 7);
         grid.add(new Label("Horario:"), 0, 8);
@@ -206,7 +210,9 @@ public class ControladorGestionEstudiantes {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
 
-                if (comboPersona.getValue() == null) {
+                Persona p = comboPersona.getValue();
+
+                if (p == null) {
                     mostrarError("Persona requerida", "Debes seleccionar una persona.");
                     return null;
                 }
@@ -231,22 +237,27 @@ public class ControladorGestionEstudiantes {
                     return null;
                 }
 
-                Persona p = comboPersona.getValue();
+                if (comboCurso.getValue() == null) {
+                    mostrarError("Curso requerido", "Debes seleccionar un curso.");
+                    return null;
+                }
 
+              
                 Estudiante est = new Estudiante();
-                est.setIdPersona(p.getIdPersona());
+
+               
+                est.setIdPersona(p.getIdPersona()); 
                 est.setNombre(p.getNombre());
                 est.setApellidos(p.getApellidos());
-                est.setUsuario(p.getUsuario());
-                est.setContraseña(p.getContraseña());
-                est.setPerfil(p.getPerfil());
+
+            
 
                 est.setDni(dni.getText());
                 est.setEmail(email.getText());
                 est.setDireccion(direccion.getText());
                 est.setTelefono(telefono.getText());
                 est.setFechanac(java.sql.Date.valueOf(fechaNac.getValue()));
-                est.setCurso(curso.getText());
+                est.setCurso(comboCurso.getValue().getNombre());
                 est.setGrupo(comboGrupo.getValue());
 
                 if (!horario.getText().isEmpty()) {
@@ -267,8 +278,9 @@ public class ControladorGestionEstudiantes {
         });
     }
 
-    
 
+
+   
     @FXML
     private void editarEstudiante() {
 
@@ -350,8 +362,7 @@ public class ControladorGestionEstudiantes {
         });
     }
 
-    
-
+   
     @FXML
     private void eliminarEstudiante() {
         Estudiante seleccionado = tablaEstudiantes.getSelectionModel().getSelectedItem();

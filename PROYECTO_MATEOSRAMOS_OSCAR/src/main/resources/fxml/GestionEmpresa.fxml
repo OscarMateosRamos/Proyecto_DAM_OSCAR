@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorGestionEmpresas"
+            fx:id="rootPane">
+
+   
+    <top>
+        <HBox spacing="10" styleClass="header">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Gestión de Empresas" styleClass="header-title"/>
+        </HBox>
+    </top>
+
+  
+    <center>
+        <VBox spacing="15" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+           
+            <TableView fx:id="tablaEmpresas" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+                    <TableColumn fx:id="colHorario" text="Horario" prefWidth="150"/>
+                    <TableColumn fx:id="colTutores" text="Tutores" prefWidth="300"/>
+                </columns>
+            </TableView>
+
+          
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Añadir Empresa" fx:id="btnAñadir" styleClass="action-button"
+                        onAction="#añadirEmpresa"/>
+
+                <Button text="Editar Empresa" fx:id="btnEditar" styleClass="action-button"
+                        onAction="#editarEmpresa"/>
+
+                <Button text="Eliminar Empresa" fx:id="btnEliminar" styleClass="delete-button"
+                        onAction="#eliminarEmpresa"/>
+
+                <Button text="Volver" fx:id="btnVolver" styleClass="back-button"
+                        onAction="#volverMenuAdmin"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

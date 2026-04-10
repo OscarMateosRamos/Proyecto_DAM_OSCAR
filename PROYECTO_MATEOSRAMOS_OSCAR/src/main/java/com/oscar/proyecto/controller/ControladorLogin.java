@@ -72,7 +72,7 @@ public class ControladorLogin implements Initializable {
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.F1) {
 				ControladorAyuda.setArchivoAyuda("/help/ayuda_login.html");
-				stagemanager.switchScene(FxmlView.AYUDA);
+				((StageManager) stagemanager).abrirVentanaAyuda(FxmlView.AYUDA);
 			}
 		});
 

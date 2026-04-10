@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 @Component
@@ -56,6 +57,42 @@ public class StageManager {
             e.printStackTrace();
         }
     }
+    
+    
+    public void abrirVentanaAyuda(FxmlView view) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlFile()));
+
+            loader.setControllerFactory(clazz -> {
+                try {
+                    return springContext.getBean(clazz);
+                } catch (Exception e) {
+                    try {
+                        return clazz.getDeclaredConstructor().newInstance();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+
+            Parent root = loader.load();
+
+            Stage ayudaStage = new Stage();
+            ayudaStage.setTitle(view.getTitle());
+            ayudaStage.setScene(new Scene(root));
+            ayudaStage.setResizable(false);
+
+           
+            ayudaStage.initOwner(primaryStage);
+            ayudaStage.initModality(Modality.WINDOW_MODAL);
+
+            ayudaStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -64,4 +101,6 @@ public class StageManager {
     public <T> T getController(Class<T> controllerClass) {
         return springContext.getBean(controllerClass);
     }
+
+	
 }

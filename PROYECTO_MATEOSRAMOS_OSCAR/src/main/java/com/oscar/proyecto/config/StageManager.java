@@ -1,8 +1,10 @@
-                                                                               package com.oscar.proyecto.config;
+package com.oscar.proyecto.config;
 
 import java.io.IOException;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +28,22 @@ public class StageManager {
     public void switchScene(FxmlView view) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlFile()));
-            loader.setControllerFactory(springContext::getBean);
+
+           
+            loader.setControllerFactory(clazz -> {
+                try {
+                    
+                    return springContext.getBean(clazz);
+                } catch (Exception e) {
+                   
+                    try {
+                        return clazz.getDeclaredConstructor().newInstance();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle(view.getTitle());
@@ -34,7 +51,7 @@ public class StageManager {
             primaryStage.setWidth(900);
             primaryStage.setHeight(900);
             primaryStage.show();
-           
+
         } catch (IOException e) {
             e.printStackTrace();
         }

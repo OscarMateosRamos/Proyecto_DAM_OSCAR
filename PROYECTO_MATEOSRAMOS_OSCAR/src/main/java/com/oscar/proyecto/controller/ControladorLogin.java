@@ -23,6 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 @Component
@@ -67,11 +68,18 @@ public class ControladorLogin implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		cargarEstilos();
 		cargarImagen();
+
+		rootPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.F1) {
+				ControladorAyuda.setArchivoAyuda("/help/ayuda_login.html");
+				stagemanager.switchScene(FxmlView.AYUDA);
+			}
+		});
+
 	}
 
 	private void cargarImagen() {
-		try (InputStream inputStream = getClass()
-				.getResourceAsStream("/images/LogoColegio.png")) {
+		try (InputStream inputStream = getClass().getResourceAsStream("/images/LogoColegio.png")) {
 			if (inputStream != null) {
 				Logo.setImage(new Image(inputStream));
 			} else {
@@ -108,8 +116,7 @@ public class ControladorLogin implements Initializable {
 			passwordField.setVisible(false);
 			passwordField.setManaged(false);
 
-			togglePasswordIcon.setImage(new Image(
-					getClass().getResourceAsStream("/icons/OjoCerrado.png")));
+			togglePasswordIcon.setImage(new Image(getClass().getResourceAsStream("/icons/OjoCerrado.png")));
 
 		} else {
 			passwordField.setText(passwordVisibleField.getText());
@@ -119,61 +126,58 @@ public class ControladorLogin implements Initializable {
 			passwordVisibleField.setVisible(false);
 			passwordVisibleField.setManaged(false);
 
-			togglePasswordIcon.setImage(new Image(
-					getClass().getResourceAsStream("/icons/OjoAbierto.png")));
+			togglePasswordIcon.setImage(new Image(getClass().getResourceAsStream("/icons/OjoAbierto.png")));
 		}
 	}
 
 	@FXML
 	private void handleIniciarSesion(javafx.event.ActionEvent event) {
 
-	    String usuario = usuarioField.getText();
-	    String password = passwordField.isVisible() ? passwordField.getText()
-	            : passwordVisibleField.getText();
+		String usuario = usuarioField.getText();
+		String password = passwordField.isVisible() ? passwordField.getText() : passwordVisibleField.getText();
 
-	    if (usuario.isEmpty() || password.isEmpty()) {
-	        mensajeLabel.setText("Usuario y contraseña son obligatorios.");
-	        mensajeLabel.setStyle("-fx-text-fill: red;");
-	        return;
-	    }
+		if (usuario.isEmpty() || password.isEmpty()) {
+			mensajeLabel.setText("Usuario y contraseña son obligatorios.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-	    Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
+		Persona persona = personaRepository.findByUsuario(usuario).orElse(null);
 
-	    if (persona == null) {
-	        mensajeLabel.setText("Usuario no encontrado.");
-	        mensajeLabel.setStyle("-fx-text-fill: red;");
-	        return;
-	    }
+		if (persona == null) {
+			mensajeLabel.setText("Usuario no encontrado.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-	    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-	    if (!encoder.matches(password, persona.getContraseña())) {
-	        mensajeLabel.setText("Contraseña incorrecta.");
-	        mensajeLabel.setStyle("-fx-text-fill: red;");
-	        return;
-	    }
+		if (!encoder.matches(password, persona.getContraseña())) {
+			mensajeLabel.setText("Contraseña incorrecta.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+			return;
+		}
 
-	    mensajeLabel.setText("Inicio de sesión correcto.");
-	    mensajeLabel.setStyle("-fx-text-fill: green;");
+		mensajeLabel.setText("Inicio de sesión correcto.");
+		mensajeLabel.setStyle("-fx-text-fill: green;");
 
-	    sesionServicio.setUsuarioActual(persona);
+		sesionServicio.setUsuarioActual(persona);
 
-	    switch (persona.getPerfil()) {
-	        case ADMIN:
-	            stagemanager.switchScene(FxmlView.MENUADMIN);
-	            break;
-	        case PROFESOR:
-	            stagemanager.switchScene(FxmlView.MENUPROFESOR);
-	            break;
-	        case ESTUDIANTE:
-	            stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
-	            break;
-	        default:
-	            mensajeLabel.setText("Perfil no reconocido.");
-	            mensajeLabel.setStyle("-fx-text-fill: red;");
-	    }
+		switch (persona.getPerfil()) {
+		case ADMIN:
+			stagemanager.switchScene(FxmlView.MENUADMIN);
+			break;
+		case PROFESOR:
+			stagemanager.switchScene(FxmlView.MENUPROFESOR);
+			break;
+		case ESTUDIANTE:
+			stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
+			break;
+		default:
+			mensajeLabel.setText("Perfil no reconocido.");
+			mensajeLabel.setStyle("-fx-text-fill: red;");
+		}
 	}
-
 
 	@FXML
 	private void handleRecuperarPassword() {
@@ -183,13 +187,10 @@ public class ControladorLogin implements Initializable {
 	@FXML
 	private void mostrarAyuda() {
 		Alert ayuda = new Alert(Alert.AlertType.INFORMATION);
-		ayuda.setTitle("Ayuda - Inicio de Sesión");
-		ayuda.setHeaderText("¿Cómo iniciar sesión?");
-		ayuda.setContentText("1. Introduce tu usuario.\n"
-				+ "2. Introduce tu contraseña.\n"
-				+ "3. Pulsa el icono del ojo para ver la contraseña.\n"
-				+ "4. Si no recuerdas tu contraseña, pulsa 'Recuperar Contraseña'.\n"
-				+ "5. Pulsa 'Iniciar Sesión' para acceder.");
+		ayuda.setTitle("Ayuda");
+		ayuda.setHeaderText("Ayuda de esta interfaz");
+		ayuda.setContentText("Pulsa F1 para ver la ayuda completa de esta pantalla.");
 		ayuda.showAndWait();
 	}
+
 }

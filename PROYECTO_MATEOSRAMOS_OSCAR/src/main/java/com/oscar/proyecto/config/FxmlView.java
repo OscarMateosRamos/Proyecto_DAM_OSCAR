@@ -13,7 +13,11 @@ public enum FxmlView {
 	GESTIONEMPRESAS("/fxml/GestionEmpresa.fxml", "Gestion de Empresas", "/styles/GestionEmpresas.css"),
 	GESTIONCICLOS("/fxml/GestionCiclo.fxml", "Gestion de Ciclo", "/styles/GestionEmpresas.css"),
 	GESTIONCURSOS("/fxml/GestionCurso.fxml", "Gestion de Cursos", "/styles/GestionCurso.css"),
-	GESTIONGRUPOS("/fxml/GestionGrupo.fxml", "Gestion de Grupo", "/styles/GestionGrupos.css")
+	GESTIONGRUPOS("/fxml/GestionGrupo.fxml", "Gestion de Grupo", "/styles/GestionGrupos.css"),
+	GESTIONFORMACIONES("/fxml/GestionFormaciones.fxml", "Gestion de Formaciones", "/styles/GestionGrupos.css"),
+	AYUDA("/fxml/AyudaView.fxml", "Ayuda", "")
+
+	
 	
 
 	;

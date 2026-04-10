@@ -75,7 +75,7 @@ public class ControladorMenuAdmin {
 
 	@FXML
 	private void abrirGestionFormaciones() {
-
+			stageManager.switchScene(FxmlView.GESTIONFORMACIONES);
 	}
 
 	private void cargarEstilos() {

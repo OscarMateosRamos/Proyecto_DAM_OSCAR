@@ -31,6 +31,7 @@ com\oscar\proyecto\controller\ControladorGestionGrupos.class
 com\oscar\proyecto\modelo\Perfil.class
 com\oscar\proyecto\controller\ControladorMenuAdmin.class
 com\oscar\proyecto\services\ServicioDocumento.class
+com\oscar\proyecto\controller\ControladorAyuda.class
 com\oscar\proyecto\repositorios\TutorEmpresaRepository.class
 com\oscar\proyecto\modelo\Ciclo.class
 com\oscar\proyecto\modelo\Curso.class
@@ -50,6 +51,7 @@ com\oscar\proyecto\controller\ControladorBienvenida.class
 com\oscar\proyecto\modelo\Especialidad.class
 com\oscar\proyecto\modelo\Evaluacion.class
 com\oscar\proyecto\modelo\TipoFalta.class
+com\oscar\proyecto\controller\ControladorGestionFormaciones.class
 com\oscar\proyecto\services\ServicioPersona.class
 com\oscar\proyecto\services\ServicioSesion.class
 com\oscar\proyecto\modelo\Estudiante.class

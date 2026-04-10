@@ -45,6 +45,9 @@
 
 			<Button text="Gestionar Personas" styleClass="sidebar-button"
 				onAction="#abrirGestionPersonas" />
+				
+				<Button text="Gestionar Formaciones" styleClass="sidebar-button"
+				onAction="#abrirGestionFormaciones" />
 
 
 			<Separator />

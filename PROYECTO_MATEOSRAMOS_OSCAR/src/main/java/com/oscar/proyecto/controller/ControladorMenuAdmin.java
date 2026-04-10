@@ -73,6 +73,11 @@ public class ControladorMenuAdmin {
 
 	}
 
+	@FXML
+	private void abrirGestionFormaciones() {
+
+	}
+
 	private void cargarEstilos() {
 		try {
 			String cssPath = "/styles/MenuAdmin.css";

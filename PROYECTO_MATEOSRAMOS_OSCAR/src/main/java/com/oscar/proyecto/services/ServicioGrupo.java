@@ -36,4 +36,8 @@ public class ServicioGrupo {
 		grupoRepositorio.deleteById(idGrupo);
 	}
 
+	public Grupo buscarPorId(Long id) {
+		return grupoRepositorio.findById(id).orElse(null);
+	}
+
 }

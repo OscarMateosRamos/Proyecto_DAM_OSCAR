@@ -9,6 +9,7 @@ package com.oscar.proyecto.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.oscar.proyecto.modelo.Empresa;
@@ -39,4 +40,8 @@ public class ServicioEmpresa {
     public Empresa buscarPorId(Long id) {
         return empresaRepo.findById(id).orElse(null);
     }
+    
+   
+
+    
 }

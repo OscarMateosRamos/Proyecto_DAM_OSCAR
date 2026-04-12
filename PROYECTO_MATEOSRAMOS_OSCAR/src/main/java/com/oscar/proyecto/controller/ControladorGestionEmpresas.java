@@ -2,6 +2,7 @@ package com.oscar.proyecto.controller;
 
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Component;
 import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.modelo.Empresa;
+import com.oscar.proyecto.modelo.TutorEmpresa;
 import com.oscar.proyecto.services.ServicioEmpresa;
+import com.oscar.proyecto.services.ServicioTutorEmpresa;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 @Component
 public class ControladorGestionEmpresas {
@@ -31,6 +35,9 @@ public class ControladorGestionEmpresas {
 
     @Autowired
     private ServicioEmpresa empresaServicio;
+
+    @Autowired
+    private ServicioTutorEmpresa tutorEmpresaServicio;
 
     @FXML
     private TableView<Empresa> tablaEmpresas;
@@ -60,17 +67,22 @@ public class ControladorGestionEmpresas {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
 
-       
-        colTutores.setCellValueFactory(data ->
-            new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getTutores() != null && !data.getValue().getTutores().isEmpty()
-                    ? data.getValue().getTutores().stream()
-                        .map(t -> t.getNombre()) 
-                        .reduce((a, b) -> a + ", " + b)
-                        .orElse("")
-                    : "Sin tutores"
-            )
-        );
+        colTutores.setCellValueFactory(data -> {
+            try {
+                List<TutorEmpresa> tutores = data.getValue().getTutores();
+                if (tutores == null || tutores.isEmpty()) {
+                    return new javafx.beans.property.SimpleStringProperty("Sin tutores");
+                }
+                String nombres = tutores.stream()
+                    .map(t -> t.getNombre())
+                    .reduce((a, b) -> a + ", " + b)
+                    .orElse("Sin tutores");
+                return new javafx.beans.property.SimpleStringProperty(nombres);
+            } catch (Exception e) {
+                System.err.println("Error al cargar tutores: " + e.getMessage());
+                return new javafx.beans.property.SimpleStringProperty("Sin tutores");
+            }
+        });
     }
 
     private void cargarEmpresas() {
@@ -79,10 +91,10 @@ public class ControladorGestionEmpresas {
         tablaEmpresas.setItems(listaEmpresas);
     }
 
-   
     @FXML
     private void añadirEmpresa() {
 
+     
         Dialog<Empresa> dialog = new Dialog<>();
         dialog.setTitle("Añadir Empresa");
         dialog.setHeaderText("Introduce los datos de la nueva empresa:");
@@ -110,7 +122,6 @@ public class ControladorGestionEmpresas {
 
         grid.add(new Label("Nombre:"), 0, 0);
         grid.add(nombre, 1, 0);
-
         grid.add(new Label("Horario:"), 0, 1);
         grid.add(horarioBox, 1, 1);
 
@@ -118,14 +129,15 @@ public class ControladorGestionEmpresas {
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
-
+                if (nombre.getText().isEmpty()) {
+                    mostrarError("Nombre requerido", "La empresa debe tener un nombre.");
+                    return null;
+                }
                 Empresa empresa = new Empresa();
                 empresa.setNombre(nombre.getText());
-
                 if (hora.getValue() != null && minuto.getValue() != null) {
                     empresa.setHorario(LocalTime.of(hora.getValue(), minuto.getValue()));
                 }
-
                 return empresa;
             }
             return null;
@@ -134,13 +146,56 @@ public class ControladorGestionEmpresas {
         Optional<Empresa> result = dialog.showAndWait();
 
         result.ifPresent(empresa -> {
-            empresaServicio.guardarEmpresa(empresa);
-            listaEmpresas.add(empresa);
+          
+            Empresa empresaGuardada = empresaServicio.guardarEmpresa(empresa);
+
+            Dialog<Void> dialogTutores = new Dialog<>();
+            dialogTutores.setTitle("Asignar Tutores");
+            dialogTutores.setHeaderText("Selecciona los tutores para \"" + empresaGuardada.getNombre() + "\":");
+
+            ButtonType finalizarButtonType = new ButtonType("Finalizar", ButtonBar.ButtonData.OK_DONE);
+            dialogTutores.getDialogPane().getButtonTypes().addAll(finalizarButtonType, ButtonType.CANCEL);
+
+          
+            List<TutorEmpresa> todosLosTutores = tutorEmpresaServicio.listarTutores();
+
+            ListView<TutorEmpresa> listaTutores = new ListView<>();
+            listaTutores.getItems().setAll(todosLosTutores);
+            listaTutores.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            listaTutores.setPrefHeight(300);
+            listaTutores.setPrefWidth(400);
+
+            VBox contenido = new VBox(10);
+            contenido.setPadding(new Insets(10));
+            contenido.getChildren().addAll(
+                new Label("Mantén Ctrl para seleccionar varios:"),
+                listaTutores
+            );
+
+            dialogTutores.getDialogPane().setContent(contenido);
+
+            dialogTutores.setResultConverter(btn -> {
+                if (btn == finalizarButtonType) {
+                    List<TutorEmpresa> seleccionados = new ArrayList<>(
+                        listaTutores.getSelectionModel().getSelectedItems()
+                    );
+                    for (TutorEmpresa tutor : seleccionados) {
+                        tutor.setEmpresa(empresaGuardada);
+                        tutorEmpresaServicio.guardarTutor(tutor);
+                    }
+                }
+                return null;
+            });
+
+            dialogTutores.showAndWait();
+
+          
+            Empresa empresaActualizada = empresaServicio.buscarPorId(empresaGuardada.getIdEmpresa());
+            listaEmpresas.add(empresaActualizada != null ? empresaActualizada : empresaGuardada);
             tablaEmpresas.refresh();
         });
     }
 
-   
     @FXML
     private void editarEmpresa() {
         Empresa seleccionada = tablaEmpresas.getSelectionModel().getSelectedItem();
@@ -176,7 +231,6 @@ public class ControladorGestionEmpresas {
 
         grid.add(new Label("Nombre:"), 0, 0);
         grid.add(nombre, 1, 0);
-
         grid.add(new Label("Horario:"), 0, 1);
         grid.add(horarioBox, 1, 1);
 
@@ -184,10 +238,8 @@ public class ControladorGestionEmpresas {
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
-
                 seleccionada.setNombre(nombre.getText());
                 seleccionada.setHorario(LocalTime.of(hora.getValue(), minuto.getValue()));
-
                 empresaServicio.guardarEmpresa(seleccionada);
                 return seleccionada;
             }
@@ -198,7 +250,6 @@ public class ControladorGestionEmpresas {
         tablaEmpresas.refresh();
     }
 
-   
     @FXML
     private void eliminarEmpresa() {
         Empresa seleccionada = tablaEmpresas.getSelectionModel().getSelectedItem();
@@ -222,7 +273,6 @@ public class ControladorGestionEmpresas {
         }
     }
 
-    
     @FXML
     private void volverMenuAdmin() {
         stageManager.switchScene(FxmlView.MENUADMIN);

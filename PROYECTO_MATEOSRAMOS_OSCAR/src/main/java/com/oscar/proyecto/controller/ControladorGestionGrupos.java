@@ -10,8 +10,10 @@ import org.springframework.stereotype.Component;
 import com.oscar.proyecto.config.FxmlView;
 import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.modelo.Curso;
+import com.oscar.proyecto.modelo.Estudiante;
 import com.oscar.proyecto.modelo.Grupo;
 import com.oscar.proyecto.services.ServicioCurso;
+import com.oscar.proyecto.services.ServicioEstudiante;
 import com.oscar.proyecto.services.ServicioGrupo;
 
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 @Component
 public class ControladorGestionGrupos {
@@ -34,6 +37,9 @@ public class ControladorGestionGrupos {
 
     @Autowired
     private ServicioCurso cursoServicio;
+
+    @Autowired
+    private ServicioEstudiante estudianteServicio;
 
     @FXML
     private TableView<Grupo> tablaGrupos;
@@ -60,7 +66,6 @@ public class ControladorGestionGrupos {
     }
 
     private void configurarColumnas() {
-
         colCurso.setCellValueFactory(data ->
             new javafx.beans.property.SimpleStringProperty(
                 data.getValue().getCurso() != null ? data.getValue().getCurso().getNombre() : ""
@@ -81,10 +86,10 @@ public class ControladorGestionGrupos {
         tablaGrupos.setItems(listaGrupos);
     }
 
-   
     @FXML
     private void añadirGrupo() {
 
+        // --- Diálogo 1: Datos básicos del grupo ---
         Dialog<Grupo> dialog = new Dialog<>();
         dialog.setTitle("Añadir Grupo");
         dialog.setHeaderText("Introduce los datos del nuevo grupo:");
@@ -113,21 +118,17 @@ public class ControladorGestionGrupos {
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
-
                 if (comboCurso.getValue() == null) {
                     mostrarError("Curso requerido", "Debes seleccionar un curso.");
                     return null;
                 }
-
                 if (nombre.getText().isEmpty()) {
                     mostrarError("Nombre requerido", "El grupo debe tener un nombre.");
                     return null;
                 }
-
                 Grupo g = new Grupo();
                 g.setCurso(comboCurso.getValue());
                 g.setNombre(nombre.getText());
-
                 return g;
             }
             return null;
@@ -136,13 +137,53 @@ public class ControladorGestionGrupos {
         Optional<Grupo> result = dialog.showAndWait();
 
         result.ifPresent(g -> {
-            grupoServicio.guardarGrupo(g);
-            listaGrupos.add(g);
+            // Guardar el grupo primero para que tenga ID asignado
+            Grupo grupoGuardado = grupoServicio.guardarGrupo(g);
+
+            // --- Diálogo 2: Añadir estudiantes al grupo ---
+            Dialog<Void> dialogEstudiantes = new Dialog<>();
+            dialogEstudiantes.setTitle("Añadir Estudiantes");
+            dialogEstudiantes.setHeaderText("Selecciona los estudiantes para el grupo \"" + grupoGuardado.getNombre() + "\":");
+
+            ButtonType finalizarButtonType = new ButtonType("Finalizar", ButtonBar.ButtonData.OK_DONE);
+            dialogEstudiantes.getDialogPane().getButtonTypes().addAll(finalizarButtonType, ButtonType.CANCEL);
+
+            List<Estudiante> todosEstudiantes = estudianteServicio.listarEstudiantes();
+
+            ListView<Estudiante> listaEstudiantes = new ListView<>();
+            listaEstudiantes.getItems().setAll(todosEstudiantes);
+            listaEstudiantes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            listaEstudiantes.setPrefHeight(300);
+            listaEstudiantes.setPrefWidth(400);
+
+            VBox contenido = new VBox(10);
+            contenido.setPadding(new Insets(10));
+            contenido.getChildren().addAll(new Label("Mantén Ctrl para seleccionar varios:"), listaEstudiantes);
+
+            dialogEstudiantes.getDialogPane().setContent(contenido);
+
+            dialogEstudiantes.setResultConverter(btn -> {
+                if (btn == finalizarButtonType) {
+                    List<Estudiante> seleccionados = new java.util.ArrayList<>(
+                        listaEstudiantes.getSelectionModel().getSelectedItems()
+                    );
+                    for (Estudiante estudiante : seleccionados) {
+                        estudiante.setGrupo(grupoGuardado);
+                        estudianteServicio.guardarEstudiante(estudiante);
+                    }
+                }
+                return null;
+            });
+
+            dialogEstudiantes.showAndWait();
+
+          
+            Grupo grupoActualizado = grupoServicio.buscarPorId(grupoGuardado.getIdGrupo());
+            listaGrupos.add(grupoActualizado != null ? grupoActualizado : grupoGuardado);
             tablaGrupos.refresh();
         });
     }
 
-    
     @FXML
     private void editarGrupo() {
 
@@ -180,20 +221,16 @@ public class ControladorGestionGrupos {
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == guardarButtonType) {
-
                 if (comboCurso.getValue() == null) {
                     mostrarError("Curso requerido", "Debes seleccionar un curso.");
                     return null;
                 }
-
                 if (nombre.getText().isEmpty()) {
                     mostrarError("Nombre requerido", "El grupo debe tener un nombre.");
                     return null;
                 }
-
                 seleccionado.setCurso(comboCurso.getValue());
                 seleccionado.setNombre(nombre.getText());
-
                 return seleccionado;
             }
             return null;
@@ -207,7 +244,6 @@ public class ControladorGestionGrupos {
         });
     }
 
-   
     @FXML
     private void eliminarGrupo() {
 

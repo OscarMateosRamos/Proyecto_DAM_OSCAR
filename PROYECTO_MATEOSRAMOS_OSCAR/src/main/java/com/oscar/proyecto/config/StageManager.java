@@ -60,38 +60,45 @@ public class StageManager {
     
     
     public void abrirVentanaAyuda(FxmlView view) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlFile()));
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlFile()));
 
-            loader.setControllerFactory(clazz -> {
-                try {
-                    return springContext.getBean(clazz);
-                } catch (Exception e) {
-                    try {
-                        return clazz.getDeclaredConstructor().newInstance();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            });
+	        loader.setControllerFactory(clazz -> {
+	            try {
+	                return springContext.getBean(clazz);
+	            } catch (Exception e) {
+	                try {
+	                    return clazz.getDeclaredConstructor().newInstance();
+	                } catch (Exception ex) {
+	                    throw new RuntimeException(ex);
+	                }
+	            }
+	        });
 
-            Parent root = loader.load();
+	        Parent root = loader.load();
 
-            Stage ayudaStage = new Stage();
-            ayudaStage.setTitle(view.getTitle());
-            ayudaStage.setScene(new Scene(root));
-            ayudaStage.setResizable(false);
+	        Scene scene = new Scene(root);
 
-           
-            ayudaStage.initOwner(primaryStage);
-            ayudaStage.initModality(Modality.WINDOW_MODAL);
+	    
+	        scene.getStylesheets().add(
+	                getClass().getResource("/styles/ayuda.css").toExternalForm()
+	        );
 
-            ayudaStage.show();
+	        Stage ayudaStage = new Stage();
+	        ayudaStage.setTitle(view.getTitle());
+	        ayudaStage.setScene(scene);
+	        ayudaStage.setResizable(false);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	        ayudaStage.initOwner(primaryStage);
+	        ayudaStage.initModality(Modality.WINDOW_MODAL);
+
+	        ayudaStage.show();
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 
 
     public Stage getPrimaryStage() {

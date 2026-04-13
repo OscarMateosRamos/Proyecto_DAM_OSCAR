@@ -10,7 +10,7 @@
 <VBox fx:id="rootPane" alignment="CENTER" spacing="20"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.oscar.proyecto.controller.ControladorBienvenida">
+      fx:controller="com.oscar.proyecto.controller.ControladorBienvenida" >
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>

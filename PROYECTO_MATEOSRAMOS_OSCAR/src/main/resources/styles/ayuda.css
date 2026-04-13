@@ -1,0 +1,48 @@
+
+.root {
+    -fx-background-color: #f7f7f7;
+}
+
+
+.titulo-ayuda {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+
+.texto-ayuda {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+    -fx-line-spacing: 4px;
+}
+
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.list-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+.list-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+
+.boton-cerrar {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+}
+
+.boton-cerrar:hover {
+    -fx-background-color: #c0392b;
+}

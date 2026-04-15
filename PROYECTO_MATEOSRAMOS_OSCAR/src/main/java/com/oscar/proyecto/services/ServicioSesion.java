@@ -1,9 +1,13 @@
 package com.oscar.proyecto.services;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oscar.proyecto.modelo.Perfil;
 import com.oscar.proyecto.modelo.Persona;
+import com.oscar.proyecto.repositorios.PersonaRepository;
 
 @Service
 public class ServicioSesion {
@@ -12,6 +16,9 @@ public class ServicioSesion {
 
     private String nombrePersonaActual;
     private Perfil perfilActual;
+    
+    @Autowired
+    PersonaRepository personaRepository;
 
    
     public Persona getUsuarioActual() {
@@ -20,8 +27,8 @@ public class ServicioSesion {
 
     public void setUsuarioActual(Persona usuarioActual) {
         this.usuarioActual = usuarioActual;
-        this.nombrePersonaActual = usuarioActual.getNombre(); // opcional
-        this.perfilActual = usuarioActual.getPerfil();        // opcional
+        this.nombrePersonaActual = usuarioActual.getNombre(); 
+        this.perfilActual = usuarioActual.getPerfil();       
     }
 
    
@@ -61,5 +68,17 @@ public class ServicioSesion {
 
     public boolean isEstudiante() {
         return perfilActual == Perfil.ESTUDIANTE;
+    }
+
+    public Optional<Persona> getPersonaActual() {
+        
+        String usuario = getNombrePersonaActual(); 
+
+        if (usuario == null) {
+            return null;
+        }
+
+        
+        return personaRepository.findByUsuario(usuario);
     }
 }

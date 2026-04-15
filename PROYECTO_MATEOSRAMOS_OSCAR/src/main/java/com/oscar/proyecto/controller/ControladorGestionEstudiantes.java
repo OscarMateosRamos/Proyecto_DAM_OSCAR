@@ -261,9 +261,7 @@ public class ControladorGestionEstudiantes {
                 est.setCurso(comboCurso.getValue().getNombre());
                 est.setGrupo(comboGrupo.getValue());
 
-                if (!horario.getText().isEmpty()) {
-                    est.setHorario(LocalDateTime.of(LocalDate.now(), LocalTime.parse(horario.getText())));
-                }
+               
 
                 return est;
             }
@@ -310,9 +308,7 @@ public class ControladorGestionEstudiantes {
         TextField direccion = new TextField(seleccionado.getDireccion());
         TextField telefono = new TextField(seleccionado.getTelefono());
         TextField horario = new TextField();
-        if (seleccionado.getHorario() != null) {
-            horario.setText(seleccionado.getHorario().toLocalTime().toString());
-        }
+        
 
         grid.add(new Label("Persona:"), 0, 0);
         grid.add(lblPersona, 1, 0);
@@ -344,11 +340,7 @@ public class ControladorGestionEstudiantes {
                 seleccionado.setDireccion(direccion.getText());
                 seleccionado.setTelefono(telefono.getText());
 
-                if (!horario.getText().isEmpty()) {
-                    seleccionado.setHorario(LocalDateTime.of(LocalDate.now(), LocalTime.parse(horario.getText())));
-                } else {
-                    seleccionado.setHorario(null);
-                }
+              
 
                 return seleccionado;
             }

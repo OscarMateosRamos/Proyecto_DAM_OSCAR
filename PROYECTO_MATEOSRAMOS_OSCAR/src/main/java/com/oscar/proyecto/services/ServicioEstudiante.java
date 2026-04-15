@@ -30,8 +30,8 @@ public class ServicioEstudiante {
 
 	public void eliminarEstudiante(Long idPersona) {
 
-		Estudiante e = estudianteRepositorio.findById(idPersona).orElseThrow(
-				() -> new IllegalStateException("Estudiante no encontrado"));
+		Estudiante e = estudianteRepositorio.findById(idPersona)
+				.orElseThrow(() -> new IllegalStateException("Estudiante no encontrado"));
 
 		if (!e.getFormaciones().isEmpty()) {
 			throw new IllegalStateException(
@@ -40,4 +40,13 @@ public class ServicioEstudiante {
 
 		estudianteRepositorio.deleteById(idPersona);
 	}
+
+	public Estudiante obtenerEstudianteCompleto(String usuario) {
+		return estudianteRepositorio.buscarEstudianteCompleto(usuario.toLowerCase());
+	}
+
+	public Estudiante obtenerEstudiantePorPersonaId(Long idPersona) {
+		return estudianteRepositorio.buscarPorPersonaId(idPersona);
+	}
+
 }

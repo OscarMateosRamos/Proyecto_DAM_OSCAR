@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.oscar.proyecto.controller.ControladorCarnetEstudiante"
+            prefWidth="500" prefHeight="300">
+
+    <center>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+           
+            <ImageView fx:id="fotoEstudiante" fitWidth="120" fitHeight="150" />
+
+           
+            <VBox spacing="8">
+                <Label text="CARNET DEL ESTUDIANTE"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <Label fx:id="labelNombre" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelApellidos" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelEmail" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelTelefono" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelDni" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelCurso" style="-fx-font-size: 14px;"/>
+                <Label fx:id="labelGrupo" style="-fx-font-size: 14px;"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Button text="Exportar a PDF" onAction="#exportarPDF" prefWidth="150"/>
+            <Button text="Volver" onAction="#volver" prefWidth="150"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

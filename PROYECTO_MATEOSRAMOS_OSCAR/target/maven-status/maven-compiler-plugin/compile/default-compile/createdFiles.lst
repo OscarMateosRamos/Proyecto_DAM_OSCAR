@@ -4,6 +4,7 @@ com\oscar\proyecto\modelo\TutorEmpresa.class
 com\oscar\proyecto\modelo\Justificada.class
 com\oscar\proyecto\controller\ControladorMenuProfesor.class
 com\oscar\proyecto\services\ServicioGrupo.class
+com\oscar\proyecto\controller\ControladorCarnetEstudiante.class
 com\oscar\proyecto\modelo\Falta.class
 com\oscar\proyecto\controller\ControladorGestionEstudiantes.class
 com\oscar\proyecto\controller\ControladorLogin.class

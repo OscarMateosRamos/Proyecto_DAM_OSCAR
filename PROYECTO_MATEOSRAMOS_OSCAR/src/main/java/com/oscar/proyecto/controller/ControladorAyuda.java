@@ -21,7 +21,7 @@ public class ControladorAyuda implements Initializable {
 
     private WebEngine webEngine;
 
-    // Cambia el Map a estático para que pueda ser accedido desde setTema()
+   
     private static final Map<String, String> ayudas = Map.ofEntries(
         Map.entry("AyudaView", """
             AYUDA GENERAL
@@ -142,7 +142,7 @@ public class ControladorAyuda implements Initializable {
         if (ayudas.containsKey(tema)) {
             temaActual = tema;
         } else {
-            // Lógica para asignar temaActual según el contenido de 'tema'
+           
             if (tema.contains("ayuda")) temaActual = "AyudaView";
             else if (tema.contains("bienvenida")) temaActual = "Bienvenida";
             else if (tema.contains("recuperar")) temaActual = "RecuperarContraseña";

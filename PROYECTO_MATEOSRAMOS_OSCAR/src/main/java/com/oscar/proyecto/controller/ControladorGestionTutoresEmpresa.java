@@ -83,7 +83,6 @@ public class ControladorGestionTutoresEmpresa {
     }
 
     private void configurarColumnas() {
-        colCodigo.setCellValueFactory(new PropertyValueFactory<>("idPersona"));
 
         colEmpresa.setCellValueFactory(data ->
             new javafx.beans.property.SimpleStringProperty(

@@ -79,6 +79,7 @@ public class ControladorMenuEstudiante {
 	
 	@FXML
 	private void verCarnetEstudiante() {
+	stageManager.switchScene(FxmlView.FICHAESTUDIANTE);
 
 	}
 

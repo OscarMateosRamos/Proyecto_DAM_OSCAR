@@ -29,7 +29,6 @@ public class Estudiante extends Persona {
 	private String telefono;
 	private Date fechanac;
 	private String dni;
-	private LocalDateTime horario;
 	private String curso;
 
 	@OneToMany(mappedBy = "estudiante")
@@ -53,7 +52,6 @@ public class Estudiante extends Persona {
 		this.telefono = telefono;
 		this.fechanac = fechanac;
 		this.dni = dni;
-		this.horario = horario;
 		this.curso = curso;
 		this.formaciones = formaciones;
 		this.incidencias = incidencias;
@@ -107,13 +105,6 @@ public class Estudiante extends Persona {
 		this.dni = dni;
 	}
 
-	public LocalDateTime getHorario() {
-		return horario;
-	}
-
-	public void setHorario(LocalDateTime horario) {
-		this.horario = horario;
-	}
 
 	public String getCurso() {
 		return curso;

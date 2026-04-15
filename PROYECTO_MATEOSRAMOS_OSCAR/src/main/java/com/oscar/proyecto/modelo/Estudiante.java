@@ -141,9 +141,7 @@ public class Estudiante extends Persona {
 
 	@Override
 	public String toString() {
-	    return getNombre() + " " + getApellidos() +
-	           (grupo != null ? " - " + grupo.getNombre() : "");
+	    return getNombre();
 	}
-
 
 }

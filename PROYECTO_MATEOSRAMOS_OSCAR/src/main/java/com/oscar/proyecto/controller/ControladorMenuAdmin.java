@@ -10,6 +10,7 @@ import com.oscar.proyecto.config.StageManager;
 import com.oscar.proyecto.services.ServicioSesion;
 
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 
 @Component
@@ -27,6 +28,14 @@ public class ControladorMenuAdmin {
 	@FXML
 	public void initialize() {
 		cargarEstilos();
+		
+		rootPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.F1) {
+				ControladorAyuda.setArchivoAyuda("/help/ayuda_login.html");
+				ControladorAyuda.setTema("MenuAdmin");
+				((StageManager) stageManager).abrirVentanaAyuda(FxmlView.AYUDA);
+			}
+		});
 	}
 
 	@FXML

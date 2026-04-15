@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -121,7 +122,7 @@ public class ControladorGestionTutoresEmpresa {
         comboPersona.getItems().setAll(
             personaServicio.listarPersonas().stream()
                 .filter(p -> p.getPerfil() == Perfil.TUTOR)
-                .toList()
+                .collect(Collectors.toList())
         );
         comboPersona.setPromptText("Selecciona persona");
 

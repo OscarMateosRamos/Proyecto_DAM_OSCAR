@@ -3,9 +3,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.web.WebView?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Pos?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
@@ -24,9 +23,7 @@
     </left>
 
     <center>
-        <ScrollPane fitToWidth="true">
-            <VBox fx:id="contenidoAyuda" spacing="10" style="-fx-padding: 20;"/>
-        </ScrollPane>
+        <WebView fx:id="webViewAyuda" prefWidth="680" prefHeight="600"/>
     </center>
 
 </BorderPane>

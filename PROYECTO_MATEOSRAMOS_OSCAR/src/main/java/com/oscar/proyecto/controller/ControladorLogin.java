@@ -72,6 +72,7 @@ public class ControladorLogin implements Initializable {
 		rootPane.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.F1) {
 				ControladorAyuda.setArchivoAyuda("/help/ayuda_login.html");
+				ControladorAyuda.setTema("Login");
 				((StageManager) stagemanager).abrirVentanaAyuda(FxmlView.AYUDA);
 			}
 		});
@@ -173,6 +174,9 @@ public class ControladorLogin implements Initializable {
 		case ESTUDIANTE:
 			stagemanager.switchScene(FxmlView.MENUESTUDIANTE);
 			break;
+			
+		case TUTOR:
+			stagemanager.switchScene(FxmlView.MENUTUTOREMPRESA);
 		default:
 			mensajeLabel.setText("Perfil no reconocido.");
 			mensajeLabel.setStyle("-fx-text-fill: red;");

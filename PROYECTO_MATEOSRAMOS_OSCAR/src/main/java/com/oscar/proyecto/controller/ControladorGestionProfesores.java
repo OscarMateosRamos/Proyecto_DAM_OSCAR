@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -75,6 +77,14 @@ public class ControladorGestionProfesores {
 		configurarColumnas();
 		cargarProfesores();
 		cargarEstilos();
+		
+		rootPane.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.F1) {
+				ControladorAyuda.setArchivoAyuda("/help/ayuda_login.html");
+				ControladorAyuda.setTema("GestionProfesores");
+				((StageManager) stageManager).abrirVentanaAyuda(FxmlView.AYUDA);
+			}
+		});
 	}
 
 	private void configurarColumnas() {
@@ -106,7 +116,7 @@ public class ControladorGestionProfesores {
 
 		ComboBox<Persona> comboPersona = new ComboBox<>();
 		comboPersona.getItems().setAll(
-				personaServicio.listarPersonas().stream().filter(p -> p.getPerfil() == Perfil.PROFESOR).toList());
+				personaServicio.listarPersonas().stream().filter(p -> p.getPerfil() == Perfil.PROFESOR).collect(Collectors.toList()));
 
 		comboPersona.setPromptText("Selecciona persona");
 
@@ -131,7 +141,7 @@ public class ControladorGestionProfesores {
 		DatePicker fechaIngreso = new DatePicker();
 
 		ComboBox<Integer> hora = new ComboBox<>();
-		hora.getItems().addAll(IntStream.range(8, 21).boxed().toList());
+		hora.getItems().addAll(IntStream.range(8, 21).boxed().collect(Collectors.toList()));
 		hora.setPromptText("Hora");
 
 		ComboBox<Integer> minuto = new ComboBox<>();

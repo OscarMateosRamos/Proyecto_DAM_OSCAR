@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -157,7 +158,7 @@ public class ControladorGestionEstudiantes {
         comboPersona.getItems().setAll(
             personaServicio.listarPersonas().stream()
                 .filter(p -> p.getPerfil() == Perfil.ESTUDIANTE)
-                .toList()
+                .collect(Collectors.toList())
         );
         comboPersona.setPromptText("Selecciona persona");
 

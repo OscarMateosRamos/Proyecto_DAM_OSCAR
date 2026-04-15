@@ -43,19 +43,19 @@
 	</left>
 
 
-	<center>
-		<VBox alignment="CENTER" spacing="20" styleClass="main-content">
-			<Label text="Panel de  Profesor" styleClass="main-title" />
+	  
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+            <Label text="Panel de  Profesor" styleClass="main-title"/>
 
-			<ImageView fitHeight="180" preserveRatio="true">
-				<image>
-					<Image url="@/images/LogoColegio.png" />
-				</image>
-			</ImageView>
+            <ImageView fitHeight="180" preserveRatio="true">
+                <image>
+                 	<Image url="@/images/Profesor.png" />
+                </image>
+            </ImageView>
 
-			<Label text="Seleccione una opción del menú lateral"
-				styleClass="main-subtitle" />
-		</VBox>
-	</center>
+            <Label text="Seleccione una opción del menú lateral" styleClass="main-subtitle"/>
+        </VBox>
+    </center>
 
 </BorderPane>

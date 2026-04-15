@@ -53,18 +53,18 @@ public class ControladorMenuEstudiante {
 
 
 	@FXML
-	private void abrirGestionProfesores() {
-		stageManager.switchScene(FxmlView.GESTIONPROFESORES);
+	private void abrirdetallesFormacion() {
+		
 	}
 
 	@FXML
-	private void abrirGestionCursos() {
+	private void registrarIncidencia() {
 
 	}
 
 	@FXML
-	private void abrirGestionEstudiantes() {
-		stageManager.switchScene(FxmlView.GESTIONESTUDIANTES);
+	private void verinfoEmpresaTutor() {
+		
 	}
 
 	@FXML
@@ -73,7 +73,12 @@ public class ControladorMenuEstudiante {
 	}
 
 	@FXML
-	private void abrirGestionTutores() {
+	private void justificarFaltas() {
+
+	}
+	
+	@FXML
+	private void verCarnetEstudiante() {
 
 	}
 

@@ -19,17 +19,21 @@
        <Label fx:id="lblBienvenida" text="BIENVENIDO" styleClass="sidebar-title"/>
        
           
-            <Button text="Ver informacion de la Formacion"  styleClass="sidebar-button"
-                    onAction="#abrirGestionProfesores"/>
+            <Button text="Ver detalles de mi Formacion"  styleClass="sidebar-button"
+                    onAction="#abrirdetallesFormacion"/>
 
             <Button text=" Registrar Incidencia"  styleClass="sidebar-button"
-                    onAction="#abrirGestionCursos"/>
+                    onAction="#registrarIncidencia"/>
 
             <Button text="Ver datos de Empresa y Tutor"  styleClass="sidebar-button"
-                    onAction="#abrirGestionEstudiantes"/>
+                    onAction="#verinfoEmpresaTutor"/>
 
-            <Button text="Adjuntar Justificante"  styleClass="sidebar-button"
-                    onAction="#abrirGestionEmpresas"/>
+            <Button text="Justificar Faltas"  styleClass="sidebar-button"
+                    onAction="#justificarFaltas"/>
+                    
+             <Button text="Ver Carnet de Estudiante"  styleClass="sidebar-button"
+                    onAction="#verCarnetEstudiante"/>
+            
 
            
 
@@ -47,7 +51,7 @@
 
             <ImageView fitHeight="180" preserveRatio="true">
                 <image>
-                    <Image url="@images/Estudiante.png"/>
+                 	<Image url="@/images/Estudiante.png" />
                 </image>
             </ImageView>
 

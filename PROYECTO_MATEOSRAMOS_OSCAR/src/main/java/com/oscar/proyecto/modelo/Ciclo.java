@@ -76,7 +76,6 @@ public class Ciclo {
 
     @Override
     public String toString() {
-        return "Ciclo [idCiclo=" + idCiclo + ", nombre=" + nombre
-                + ", descripcion=" + descripcion + "]"; 
+        return nombre; 
     }
 }

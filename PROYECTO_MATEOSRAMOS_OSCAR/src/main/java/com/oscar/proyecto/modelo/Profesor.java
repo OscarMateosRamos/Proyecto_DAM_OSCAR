@@ -151,6 +151,6 @@ public class Profesor extends Persona {
 
 	@Override
 	public String toString() {
-		return getNombre() + " " + getApellidos() + " - " + codigoProfesor;
+		return   codigoProfesor;
 	}
 }

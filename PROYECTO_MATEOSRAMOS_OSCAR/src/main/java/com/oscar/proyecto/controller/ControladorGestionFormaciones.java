@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -135,7 +136,7 @@ public class ControladorGestionFormaciones {
 				.filter(f -> (texto.isEmpty() || f.getEstudiante().getNombre().toLowerCase().contains(texto)
 						|| f.getEmpresa().getNombre().toLowerCase().contains(texto))
 						&& (periodoSel == null || f.getPeriodo() == periodoSel))
-				.toList();
+				.collect(Collectors.toList());
 
 		tablaFormaciones.setItems(FXCollections.observableArrayList(filtrado));
 	}
@@ -204,6 +205,18 @@ public class ControladorGestionFormaciones {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(20));
+		
+		
+		List<Estudiante> estudiantes = servicioEstudiante.listarEstudiantes();
+		List<Empresa> empresas = servicioEmpresa.listarEmpresas();
+		List<TutorEmpresa> tutores = servicioTutor.listarTutores();
+		List<Profesor> profesores = servicioProfesor.listarProfesores();
+
+		System.out.println("Estudiantes cargados: " + estudiantes.size());
+		System.out.println("Empresas cargadas: " + empresas.size());
+		System.out.println("Tutores cargados: " + tutores.size());
+		System.out.println("Profesores cargados: " + profesores.size());
+
 
 		ComboBox<Estudiante> cboEstudiante = new ComboBox<>();
 		cboEstudiante.setItems(FXCollections.observableArrayList(servicioEstudiante.listarEstudiantes()));

@@ -9,7 +9,6 @@
             fx:controller="com.oscar.proyecto.controller.ControladorGestionFormaciones"
             fx:id="rootPane">
 
-   
     <top>
         <HBox spacing="10" styleClass="header">
             <padding>
@@ -19,14 +18,12 @@
         </HBox>
     </top>
 
-   
     <center>
         <VBox spacing="15" styleClass="content-area">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-           
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Buscar:"/>
                 <TextField fx:id="txtBuscar" promptText="Estudiante, empresa..."
@@ -35,21 +32,19 @@
                 <ComboBox fx:id="cboPeriodo" prefWidth="160"/>
             </HBox>
 
-          
             <TableView fx:id="tablaFormaciones" prefHeight="400">
                 <columns>
-                    <TableColumn fx:id="colId"                text="ID"               prefWidth="55"/>
-                    <TableColumn fx:id="colEstudiante"        text="Estudiante"        prefWidth="160"/>
-                    <TableColumn fx:id="colEmpresa"           text="Empresa"           prefWidth="140"/>
-                    <TableColumn fx:id="colTutorEmpresa"      text="Tutor empresa"     prefWidth="140"/>
-                    <TableColumn fx:id="colProfesorCoord"     text="Profesor coord."   prefWidth="140"/>
-                    <TableColumn fx:id="colFechaInicio"       text="Fecha inicio"      prefWidth="110"/>
-                    <TableColumn fx:id="colFechaFin"          text="Fecha fin"         prefWidth="110"/>
-                    <TableColumn fx:id="colPeriodo"           text="Período"           prefWidth="110"/>
+                    <TableColumn fx:id="colId"            text="ID"               prefWidth="55"/>
+                    <TableColumn fx:id="colEstudiante"    text="Estudiante"        prefWidth="160"/>
+                    <TableColumn fx:id="colEmpresa"       text="Empresa"           prefWidth="140"/>
+                    <TableColumn fx:id="colTutorEmpresa"  text="Tutor empresa"     prefWidth="140"/>
+                    <TableColumn fx:id="colProfesorCoord" text="Profesor coord."   prefWidth="140"/>
+                    <TableColumn fx:id="colFechaInicio"   text="Fecha inicio"      prefWidth="110"/>
+                    <TableColumn fx:id="colFechaFin"      text="Fecha fin"         prefWidth="110"/>
+                    <TableColumn fx:id="colPeriodo"       text="Período"           prefWidth="110"/>
                 </columns>
             </TableView>
 
-           
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Button text="Añadir formación"
                         fx:id="btnAñadir"
@@ -65,12 +60,8 @@
                         onAction="#eliminarFormacion"/>
             </HBox>
 
-         
             <Separator/>
 
-            
-            
-          
             <HBox alignment="CENTER_RIGHT">
                 <Button text="Volver"
                         fx:id="btnVolver"

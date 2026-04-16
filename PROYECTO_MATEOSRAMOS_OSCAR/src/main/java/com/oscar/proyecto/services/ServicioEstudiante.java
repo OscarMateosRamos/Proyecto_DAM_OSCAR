@@ -1,52 +1,56 @@
-/**
-*Clase ServicioEstudiante.java
-*
-*@author Oscar Mateos Ramos
-*@version
-*/
 package com.oscar.proyecto.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.oscar.proyecto.modelo.Estudiante;
 import com.oscar.proyecto.repositorios.EstudianteRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 @Service
 public class ServicioEstudiante {
 
-	@Autowired
-	private EstudianteRepository estudianteRepositorio;
+    @Autowired
+    private EstudianteRepository estudianteRepositorio;
 
-	public Estudiante guardarEstudiante(Estudiante e) {
-		return estudianteRepositorio.save(e);
-	}
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public List<Estudiante> listarEstudiantes() {
-		return estudianteRepositorio.findAll();
-	}
+    @Transactional
+    public Estudiante crearEstudiante(Estudiante e) {
+        Estudiante merged = entityManager.merge(e);
+        entityManager.flush();    
+        entityManager.refresh(merged); 
+        return merged;
+    }
 
-	public void eliminarEstudiante(Long idPersona) {
+    public Estudiante guardarEstudiante(Estudiante e) {
+        return estudianteRepositorio.save(e);
+    }
 
-		Estudiante e = estudianteRepositorio.findById(idPersona)
-				.orElseThrow(() -> new IllegalStateException("Estudiante no encontrado"));
+    public List<Estudiante> listarEstudiantes() {
+        return estudianteRepositorio.findAll();
+    }
 
-		if (!e.getFormaciones().isEmpty()) {
-			throw new IllegalStateException(
-					"No se puede eliminar este profesor porque participa en una formacion borra su formacion primero.");
-		}
+    public void eliminarEstudiante(Long idPersona) {
+        Estudiante e = estudianteRepositorio.findById(idPersona)
+                .orElseThrow(() -> new IllegalStateException("Estudiante no encontrado"));
+        if (!e.getFormaciones().isEmpty()) {
+            throw new IllegalStateException(
+                    "No se puede eliminar este estudiante porque participa en una formacion.");
+        }
+        estudianteRepositorio.deleteById(idPersona);
+    }
 
-		estudianteRepositorio.deleteById(idPersona);
-	}
+    public Estudiante obtenerEstudianteCompleto(String usuario) {
+        return estudianteRepositorio.buscarEstudianteCompleto(usuario.toLowerCase());
+    }
 
-	public Estudiante obtenerEstudianteCompleto(String usuario) {
-		return estudianteRepositorio.buscarEstudianteCompleto(usuario.toLowerCase());
-	}
-
-	public Estudiante obtenerEstudiantePorPersonaId(Long idPersona) {
-		return estudianteRepositorio.buscarPorPersonaId(idPersona);
-	}
-
+    public Estudiante obtenerEstudiantePorPersonaId(Long idPersona) {
+        return estudianteRepositorio.buscarPorPersonaId(idPersona);
+    }
 }

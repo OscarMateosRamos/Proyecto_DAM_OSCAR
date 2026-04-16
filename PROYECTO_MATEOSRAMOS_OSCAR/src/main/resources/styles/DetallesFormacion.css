@@ -1,0 +1,68 @@
+
+.root {
+    -fx-background-color: #f4f4f9;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.label {
+    -fx-font-size: 14.0px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.text-field, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4.0px;
+    -fx-background-radius: 4.0px;
+    -fx-padding: 8.0px;
+    -fx-font-size: 14.0px;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0px;
+    -fx-padding: 8.0px 16.0px;
+    -fx-border-radius: 4.0px;
+    -fx-background-radius: 4.0px;
+}
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.tab-pane {
+    -fx-background-color: #f4f4f9;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #f4f4f9;
+}
+.tab-pane .tab {
+    -fx-background-color: #e0e0e0;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4.0px 4.0px 0.0 0.0;
+    -fx-background-radius: 4.0px 4.0px 0.0 0.0;
+    -fx-padding: 8.0px 16.0px;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4.0px;
+    -fx-background-radius: 4.0px;
+}
+
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4.0px;
+    -fx-background-radius: 4.0px;
+    -fx-padding: 8.0px;
+    -fx-font-size: 14.0px;
+}
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.oscar.proyecto.controller.ControladorDetallesFormacion"
+      spacing="10">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Detalles de la Formación" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="ID Formación:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="idFormacionField" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Estudiante:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="estudianteField" editable="false" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Empresa:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="empresaField" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Tutor Empresa:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="tutorEmpresaField" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Profesor Coordinador:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="profesorCoordinadorField" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Fecha Inicio:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="fechaInicioPicker" editable="false" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Fecha Fin:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="fechaFinPicker" editable="false" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Periodo:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="periodoField" editable="false" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+        <Button text="Cerrar" fx:id="cerrarButton" GridPane.rowIndex="8" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+    </GridPane>
+
+    <TabPane>
+        <Tab text="Faltas">
+            <ListView fx:id="faltasListView"/>
+        </Tab>
+        <Tab text="Documentos">
+            <ListView fx:id="documentosListView"/>
+        </Tab>
+        <Tab text="Incidencias">
+            <ListView fx:id="incidenciasListView"/>
+        </Tab>
+        <Tab text="Evaluación">
+            <TextArea fx:id="evaluacionTextArea" editable="false" wrapText="true"/>
+        </Tab>
+    </TabPane>
+</VBox>

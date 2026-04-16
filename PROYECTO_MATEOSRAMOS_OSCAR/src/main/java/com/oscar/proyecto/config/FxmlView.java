@@ -17,6 +17,7 @@ public enum FxmlView {
 	GESTIONGRUPOS("/fxml/GestionGrupo.fxml", "Gestion de Grupo", "/styles/GestionGrupos.css"),
 	GESTIONFORMACIONES("/fxml/GestionFormaciones.fxml", "Gestion de Formaciones", "/styles/GestionGrupos.css"),
 	FICHAESTUDIANTE("/fxml/FichaEstudiante.fxml", "Ficha de Estudiante", "/styles/FichaEstudiante.css"),
+	DETALLEFORMACION("/fxml/DetallesFormacion.fxml", "Detalles Formacion", "/styles/DetallesFormacion.css"),
 	AYUDA("/fxml/AyudaView.fxml", "Ayuda", "/styles/ayuda.css")
 
 	

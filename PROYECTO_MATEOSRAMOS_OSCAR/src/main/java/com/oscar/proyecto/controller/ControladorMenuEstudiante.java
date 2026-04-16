@@ -54,7 +54,7 @@ public class ControladorMenuEstudiante {
 
 	@FXML
 	private void abrirdetallesFormacion() {
-		
+		stageManager.switchScene(FxmlView.DETALLEFORMACION);
 	}
 
 	@FXML

@@ -1,5 +1,7 @@
 package com.oscar.proyecto.controller;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.oscar.proyecto.config.FxmlView;
@@ -55,7 +57,7 @@ public class ControladorDetallesFormacion {
         faltasListView.getItems().addAll(
             formacion.getFaltas().stream()
                 .map(falta -> falta.toString())
-                .toList()
+                .collect(Collectors.toList())
         );
        
     }

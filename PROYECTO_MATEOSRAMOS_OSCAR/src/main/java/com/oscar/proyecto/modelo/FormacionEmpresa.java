@@ -50,9 +50,6 @@ public class FormacionEmpresa {
 	private List<Falta> faltas;
 
 	@OneToMany(mappedBy = "formacion")
-	private List<Documento> documentos;
-
-	@OneToMany(mappedBy = "formacion")
 	private List<Incidencia> incidencias;
 
 	@OneToOne(mappedBy = "formacion")
@@ -61,10 +58,8 @@ public class FormacionEmpresa {
 	public FormacionEmpresa() {
 	}
 
-	public FormacionEmpresa(Long idFormacion, Estudiante estudiante,
-			Empresa empresa, TutorEmpresa tutorEmpresa,
-			Profesor profesorCoordinador, Date fechaInicio, Date fechaFin,
-			Periodo periodo, List<Falta> faltas, List<Documento> documentos,
+	public FormacionEmpresa(Long idFormacion, Estudiante estudiante, Empresa empresa, TutorEmpresa tutorEmpresa,
+			Profesor profesorCoordinador, Date fechaInicio, Date fechaFin, Periodo periodo, List<Falta> faltas,
 			List<Incidencia> incidencias, Evaluacion evaluacion) {
 		super();
 		this.idFormacion = idFormacion;
@@ -76,7 +71,6 @@ public class FormacionEmpresa {
 		this.fechaFin = fechaFin;
 		this.periodo = periodo;
 		this.faltas = faltas;
-		this.documentos = documentos;
 		this.incidencias = incidencias;
 		this.evaluacion = evaluacion;
 	}
@@ -153,14 +147,6 @@ public class FormacionEmpresa {
 		this.faltas = faltas;
 	}
 
-	public List<Documento> getDocumentos() {
-		return documentos;
-	}
-
-	public void setDocumentos(List<Documento> documentos) {
-		this.documentos = documentos;
-	}
-
 	public List<Incidencia> getIncidencias() {
 		return incidencias;
 	}
@@ -179,13 +165,10 @@ public class FormacionEmpresa {
 
 	@Override
 	public String toString() {
-		return "FormacionEmpresa [idFormacion=" + idFormacion + ", estudiante="
-				+ estudiante + ", empresa=" + empresa + ", tutorEmpresa="
-				+ tutorEmpresa + ", profesorCoordinador=" + profesorCoordinador
-				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ ", periodo=" + periodo + ", faltas=" + faltas
-				+ ", documentos=" + documentos + ", incidencias=" + incidencias
-				+ ", evaluacion=" + evaluacion + "]";
+		return "FormacionEmpresa [idFormacion=" + idFormacion + ", estudiante=" + estudiante + ", empresa=" + empresa
+				+ ", tutorEmpresa=" + tutorEmpresa + ", profesorCoordinador=" + profesorCoordinador + ", fechaInicio="
+				+ fechaInicio + ", fechaFin=" + fechaFin + ", periodo=" + periodo + ", faltas=" + faltas
+				+ ", incidencias=" + incidencias + ", evaluacion=" + evaluacion + "]";
 	}
 
 }

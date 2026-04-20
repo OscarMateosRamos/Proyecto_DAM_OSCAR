@@ -67,7 +67,19 @@ public class ControladorGestionEstudiantes {
 	private TableColumn<Estudiante, String> colEmail;
 
 	@FXML
+	private TableColumn<Estudiante, String> colTelefono;
+
+	@FXML
+	private TableColumn<Estudiante, String> colDireccion;
+
+	@FXML
+	private TableColumn<Estudiante, String> colFechaNac;
+
+	@FXML
 	private TableColumn<Estudiante, String> colGrupo;
+
+	@FXML
+	private TableColumn<Estudiante, String> colCurso;
 
 	private ObservableList<Estudiante> listaEstudiantes;
 
@@ -82,14 +94,31 @@ public class ControladorGestionEstudiantes {
 	}
 
 	private void configurarColumnas() {
-		colDni.setCellValueFactory(cellData -> new SimpleStringProperty(
-				cellData.getValue().getDni()));
-		colEmail.setCellValueFactory(cellData -> new SimpleStringProperty(
-				cellData.getValue().getEmail()));
-		colGrupo.setCellValueFactory(cellData -> new SimpleStringProperty(
-				cellData.getValue().getGrupo() != null
-						? cellData.getValue().getGrupo().getNombre()
-						: ""));
+	    colDni.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getDni())
+	    );
+	    colEmail.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getEmail())
+	    );
+	    colTelefono.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getTelefono())
+	    );
+	    colDireccion.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getDireccion())
+	    );
+	    colFechaNac.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getFechanac().toString())
+	    );
+	    colGrupo.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(
+	            cellData.getValue().getGrupo() != null
+	                ? cellData.getValue().getGrupo().getNombre()
+	                : ""
+	        )
+	    );
+	    colCurso.setCellValueFactory(cellData ->
+	        new SimpleStringProperty(cellData.getValue().getCurso())
+	    );
 	}
 
 	private void cargarEstudiantes() {

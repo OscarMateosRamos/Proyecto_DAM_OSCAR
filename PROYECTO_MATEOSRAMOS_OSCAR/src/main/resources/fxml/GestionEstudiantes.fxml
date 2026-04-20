@@ -14,7 +14,8 @@
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
-            <Label text="Gestión de Estudiantes" styleClass="header-title"/>
+            <Label text="Gestión de Estudiantes" styleClass="header-title" 
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
         </HBox>
     </top>
 
@@ -24,12 +25,19 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <TableView fx:id="tablaEstudiantes" prefHeight="400">
+            <TableView fx:id="tablaEstudiantes" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colDni" text="DNI" prefWidth="120"/>
-                    <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
-                    <TableColumn fx:id="colGrupo" text="Grupo" prefWidth="150"/>
+                    <TableColumn fx:id="colDni" text="DNI" prefWidth="100"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                    <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100"/>
+                    <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="150"/>
+                    <TableColumn fx:id="colFechaNac" text="F. Nacimiento" prefWidth="110"/>
+                    <TableColumn fx:id="colGrupo" text="Grupo" prefWidth="100"/>
+                    <TableColumn fx:id="colCurso" text="Curso" prefWidth="80"/>
                 </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
             </TableView>
 
             <HBox spacing="15" alignment="CENTER">
@@ -40,6 +48,7 @@
                         onAction="#editarEstudiante"/>
 
                 <Button text="Eliminar Estudiante" styleClass="delete-button"
+                        style="-fx-background-color: #ff4444; -fx-text-fill: white;"
                         onAction="#eliminarEstudiante"/>
 
                 <Button text="Volver" styleClass="back-button"

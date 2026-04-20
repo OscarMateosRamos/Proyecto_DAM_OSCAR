@@ -19,8 +19,6 @@
 
 			  <Label fx:id="lblBienvenida" text="BIENVENIDO" styleClass="sidebar-title"/>
 
-			<Button text="Asignar tutor a Estudiante"
-				styleClass="sidebar-button" onAction="#asignartutor" />
 
 			<Button text="Asignar Empresa a Estudiante" styleClass="sidebar-button"
 				onAction="#asignarempresaestudiante" />

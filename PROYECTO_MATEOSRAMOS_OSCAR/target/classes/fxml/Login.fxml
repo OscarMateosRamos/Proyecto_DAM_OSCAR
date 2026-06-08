@@ -28,24 +28,25 @@
         </image>
     </ImageView>
 
-    <VBox spacing="10" alignment="CENTER_LEFT">
+  
+    <VBox spacing="5" alignment="CENTER_LEFT" prefWidth="400" maxWidth="400">
         <Label text="Usuario:" styleClass="label"/>
-        <TextField fx:id="usuarioField" promptText="Introduce tu usuario"/>
+        <TextField fx:id="usuarioField" promptText="Introduce tu usuario" maxWidth="Infinity"/>
     </VBox>
 
-    <VBox spacing="10" alignment="CENTER_LEFT">
+   
+    <VBox spacing="5" alignment="CENTER_LEFT" prefWidth="400" maxWidth="400">
         <Label text="Contraseña:" styleClass="label"/>
 
         <HBox spacing="5" alignment="CENTER_LEFT">
 
-           
-            <PasswordField fx:id="passwordField" promptText="Introduce tu contraseña"/>
+            <PasswordField fx:id="passwordField" promptText="Introduce tu contraseña"
+                           HBox.hgrow="ALWAYS"/>
 
-           
             <TextField fx:id="passwordVisibleField" promptText="Introduce tu contraseña"
-                       visible="false" managed="false"/>
+                       visible="false" managed="false"
+                       HBox.hgrow="ALWAYS"/>
 
-          
             <ImageView fx:id="togglePasswordIcon"
                        fitHeight="24" fitWidth="24"
                        onMouseClicked="#togglePasswordVisibility">
@@ -63,4 +64,5 @@
     </HBox>
 
     <Label fx:id="mensajeLabel" styleClass="mensaje-error"/>
+
 </VBox>
